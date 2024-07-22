@@ -1,0 +1,12 @@
+eno,ename,esalary
+1,"viral patel",30000.0
+2,"piyush arora",40000.0
+3,"bipin jadav",50000.0
+ano,atype,aname,anname,asalary,aid,anumber
+101,saving,"viral patel",aaaa,50000.0,viral@gmail.com,8888888888
+102,current,"piyush arora",bbbb,70000.0,piyush@gmail.com,9999999999
+103,saving,"bipin jadav",cccc,25000.0,bipin@gmail.com,7777777777
+eno,ename,esalary
+1,"viral patel",30000.0
+2,"piyush arora",40000.0
+3,"bipin jadav",50000.0

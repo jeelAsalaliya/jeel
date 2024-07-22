@@ -1,0 +1,395 @@
+3.
+create table t2(col mytype);
+
+insert into t2 values(1),(2.0),(3.5),('4'),(null),('viral'),(x'011001'),(x'a1f2'),(date('now','localtime')),(true),(false);
+
+select col,typeof(col) from t2;
++------------+-------------+
+|    col     | typeof(col) |
++------------+-------------+
+| 1          | integer     |
++------------+-------------+
+| 2          | integer     |
++------------+-------------+
+| 3.5        | real        |
++------------+-------------+
+| 4          | integer     |
++------------+-------------+
+|            | null        |
++------------+-------------+
+| viral      | text        |
++------------+-------------+
+|            | blob        |
+|            |             |
+|            |             |
++------------+-------------+
+| ??          | blob        |
++------------+-------------+
+| 2023-07-23 | text        |
++------------+-------------+
+| 1          | integer     |
++------------+-------------+
+| 0          | integer     |
++------------+-------------+
+
+4.
+
+create table t1(c1,c2 null,c3 int,c4 numeric,c5 float,c6 varchar(20),c7 clob,c8 date,c9 boolean);
+insert into t1 values
+(1,1,1,1,1,1,1,1,1),
+(1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5),
+(x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd'),
+(null,null,null,null,null,null,null,null,null),
+(date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now')),
+(true,true,true,true,true,true,true,true,true);
+
+select 
+c1 "data",
+typeof(c1)"c1-none",
+typeof(c2)"c2-null",
+typeof(c3)"c3-int",
+typeof(c4)"c4-numeric",
+typeof(c5)"c5-float",
+typeof(c6)"c6-varchar",
+typeof(c7)"c7-blob",
+typeof(c8)"c8-date",
+typeof(c9)"c9-boolean"
+from t1;
+
+┌────────────┬─────────┬─────────┬─────────┬────────────┬──────────┬────────────┬─────────┬─────────┬────────────┐
+│    data    │ c1-none │ c2-null │ c3-int  │ c4-numeric │ c5-float │ c6-varchar │ c7-blob │ c8-date │ c9-boolean │
+├────────────┼─────────┼─────────┼─────────┼────────────┼──────────┼────────────┼─────────┼─────────┼────────────┤
+│ 1          │ integer │ integer │ integer │ integer    │ real     │ text       │ text    │ integer │ integer    │
+│ 1.5        │ real    │ real    │ real    │ real       │ real     │ text       │ text    │ real    │ real       │
+│ ??          │ blob    │ blob    │ blob    │ blob       │ blob     │ blob       │ blob    │ blob    │ blob       │
+│            │ null    │ null    │ null    │ null       │ null     │ null       │ null    │ null    │ null       │
+│ 2023-07-23 │ text    │ text    │ text    │ text       │ text     │ text       │ text    │ text    │ text       │
+│ 1          │ integer │ integer │ integer │ integer    │ real     │ text       │ text    │ integer │ integer    │
+└────────────┴─────────┴─────────┴─────────┴────────────┴──────────┴────────────┴─────────┴─────────┴────────────┘
+
+5.
+create table stud
+(
+ rollno int primary key,
+ name text
+);
+
+insert into stud values(1,'jeel asalaliya');
+insert into stud values(null,'s.v.patel');
+insert into stud values(null,'svp');
+insert into stud values(null,'s.v.p');
+insert into stud values(2,'asalaliya jeel');
+
+┌────────┬────────────────┐
+│ rollno │      name      │
+├────────┼────────────────┤
+│ 1      │ jeel asalaliya │
+│        │ s.v.patel      │
+│        │ svp            │
+│        │ s.v.p          │
+│ 2      │ asalaliya jeel │
+└────────┴────────────────┘
+6.
+insert into stud values(1,'jeel asalaliya');
+insert into stud(name) values('s.v.patel');
+insert into stud(name) values('svp');
+insert into stud values(null,'s.v.p');
+insert into stud values(5,'asalaliya jeel');
+
+sqlite> select *from stud;
+┌────────┬────────────────┐
+│ rollno │      name      │
+├────────┼────────────────┤
+│ 1      │ jeel asalaliya │
+│        │ s.v.patel      │
+│        │ svp            │
+│        │ s.v.p          │
+│ 5      │ asalaliya jeel │
+└────────┴────────────────┘
+
+7.
+create table stud
+(
+ roll_no integer,
+ name text not null,
+ year text
+);
+
+insert into stud values(1,'jeel asalaliya','fy');
+insert into stud values(2,'krina babariya','fy');
+
+sqlite> select *from stud;
+┌─────────┬────────────────┬──────┐
+│ roll_no │      name      │ year │
+├─────────┼────────────────┼──────┤
+│ 1       │ jeel asalaliya │ fy   │
+│ 2       │ krina babariya │ fy   │
+└─────────┴────────────────┴──────┘
+alter table stud rename to student;
+
+create table stud
+(
+ roll_no integer,
+ name text,
+ year text,
+ primary key(roll_no,year)
+);
+
+insert into stud select *from student;
+select *from stud;
+
+pragma table_info(stud);
+
+┌─────┬─────────┬─────────┬─────────┬────────────┬────┐
+│ cid │  name   │  type   │ notnull │ dflt_value │ pk │
+├─────┼─────────┼─────────┼─────────┼────────────┼────┤
+│ 0   │ roll_no │ INTEGER │ 0       │            │ 1  │
+│ 1   │ name    │ TEXT    │ 0       │            │ 0  │
+│ 2   │ year    │ TEXT    │ 0       │            │ 2  │
+└─────┴─────────┴─────────┴─────────┴────────────┴────┘
+8.
+create table account
+(
+ ano int primary key,
+ balance float 
+);
+
+insert into account values
+(101,5000),
+(102,7000),
+(103,2000),
+(104,3000);
+
+sqlite> select *from account;
+┌─────┬─────────┐
+│ ano │ balance │
+├─────┼─────────┤
+│ 101 │ 5000.0  │
+│ 102 │ 7000.0  │
+│ 103 │ 2000.0  │
+│ 104 │ 3000.0  │
+└─────┴─────────┘
+
+update account set balance=balance-1000 where ano=101;       			--automatically commit is executed here--
+update account set balance=balance+1000 where ano=102;
+select *from account;
+┌─────┬─────────┐
+│ ano │ balance │
+├─────┼─────────┤
+│ 101 │ 4000.0  │
+│ 102 │ 8000.0  │
+│ 103 │ 2000.0  │
+│ 104 │ 3000.0  │
+└─────┴─────────┘
+update account set balance=balance+1000 where ano=101;       			--commit is not executed here--
+update account set balance=balance-1000 where ano=102;
+select *from account;
+┌─────┬─────────┐
+│ ano │ balance │
+├─────┼─────────┤
+│ 101 │ 5000.0  │
+│ 102 │ 7000.0  │
+│ 103 │ 2000.0  │
+│ 104 │ 3000.0  │
+└─────┴─────────┘
+update account set balance=balance+balance*10/100; 				--automatically commit is executed here--		
+sqlite> select *from account;
+┌─────┬─────────┐
+│ ano │ balance │
+├─────┼─────────┤
+│ 101 │ 5500.0  │
+│ 102 │ 7700.0  │
+│ 103 │ 2200.0  │
+│ 104 │ 3300.0  │
+└─────┴─────────┘
+begin;										--rollback is executed by us instead of commit--
+update account set balance=balance+balance*10/100;
+rollback;
+sqlite> select *from account;
+┌─────┬─────────┐
+│ ano │ balance │
+├─────┼─────────┤
+│ 101 │ 5500.0  │
+│ 102 │ 7700.0  │
+│ 103 │ 2200.0  │
+│ 104 │ 3300.0  │
+└─────┴─────────┘
+
+9.
+.open db2.db
+.output mydb2.txt
+.dump
+
+10.
+.open db2.db
+.output student_table.txt
+.dump student 
+
+11.
+.open db2.db
+.output student_table_structure.doc
+.schema student
+
+.output stdout
+.schema student
+CREATE TABLE IF NOT EXISTS "student"
+(
+ roll_no integer,
+ name text not null,
+ year text
+);
+
+12.
+.open db2.db
+.output student_data.doc
+select *from student;
+.mode box
+select *from student;
+.mode column
+select *from student;
+.mode markdown
+select *from student;
+.mode insert
+select *from student;
+.output stdout
+
+13.
+create table emp
+(
+ eno number,
+ ename text,
+ esalary number
+);
+
+insert into emp values(1,'virat patel',30000);
+insert into emp values(2,'piyush arora',40000);
+insert into emp values(3,'bipin jadav',50000); 
+
+.mode csv
+.once emp1.csv
+select *from emp;
+
+.mode csv
+.output all_data.csv
+select *from emp;
+select *from bank_account;
+select *from emp;
+.output stdout
+
+select *from emp;
+.header on
+.mode csv
+.once emp2.csv
+select *from emp;
+
+14.
+select *from emp;
+.mode csv
+.import emp1.csv emp
+.mode box
+select *from emp;
+
+┌─────┬──────────────┬─────────┐
+│ eno │    ename     │ esalary │
+├─────┼──────────────┼─────────┤
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+└─────┴──────────────┴─────────┘
+
+select *from emp;
+.mode csv
+.import emp2.csv emp
+.mode box
+select *from emp;
+┌─────┬──────────────┬─────────┐
+│ eno │    ename     │ esalary │
+├─────┼──────────────┼─────────┤
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+└─────┴──────────────┴─────────┘
+
+select *from emp;
+.mode csv
+.import --skip 1 emp2.csv emp
+.mode box
+select *from emp;
+┌─────┬──────────────┬─────────┐
+│ eno │    ename     │ esalary │
+├─────┼──────────────┼─────────┤
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+└─────┴──────────────┴─────────┘
+.mode csv
+.import emp2.csv epm
+.mode box
+select *from emp;
+┌─────┬──────────────┬─────────┐
+│ eno │    ename     │ esalary │
+├─────┼──────────────┼─────────┤
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+└─────┴──────────────┴─────────┘
+select *from epm;
+┌─────┬──────────────┬─────────┐
+│ eno │    ename     │ esalary │
+├─────┼──────────────┼─────────┤
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+│ eno │ ename        │ esalary │
+│ 1   │ virat patel  │ 30000   │
+│ 2   │ piyush arora │ 40000   │
+│ 3   │ bipin jadav  │ 50000   │
+└─────┴──────────────┴─────────┘
+pragma table_info(epm);
+┌─────┬─────────┬──────┬─────────┬────────────┬────┐
+│ cid │  name   │ type │ notnull │ dflt_value │ pk │
+├─────┼─────────┼──────┼─────────┼────────────┼────┤
+│ 0   │ eno     │ TEXT │ 0       │            │ 0  │
+│ 1   │ ename   │ TEXT │ 0       │            │ 0  │
+│ 2   │ esalary │ TEXT │ 0       │            │ 0  │
+└─────┴─────────┴──────┴─────────┴────────────┴────┘

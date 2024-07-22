@@ -1,0 +1,132 @@
+1.
+import csv
+fields=['name','branch','year','cgpa']
+
+rows=[['nikhil','coe','2','9.0'],
+	['sanchit','coe','2','9.1'],
+	['aditya','it','2','9.3'],
+	['sagar','se','1','9.5'],
+	['prateek','mce','3','7.8'],
+	['sahil','ep','2','9.1']]
+
+filename='f1.csv'
+file=open(filename,'w')
+csv_writer=csv.writer(file)
+csv_writer.writerow(fields)
+csv_writer.writerows(rows)
+file.close()
+
+import csv
+fields=['name','branch','year','cgpa']
+
+rows=[['nikhil','coe','2','9.0'],
+	['sanchit','coe','2','9.1'],
+	['aditya','it','2','9.3'],
+	['sagar','se','1','9.5'],
+	['prateek','mce','3','7.8'],
+	['sahil','ep','2','9.1']]
+
+filename='f1.csv'
+file=open(filename,'w')
+csv_writer=csv.writer(file)
+csv_writer.writerow(fields)
+csv_writer.writerows(rows)
+file.close()
+
+2.
+import csv
+file=open('f1.csv','r')
+data=csv.DictReader(file)
+
+for row in data:
+	print(row)
+file.close()
+
+3.
+
+import csv
+fields=['name','branch','year','cgpa']
+
+mydict=[{'branch':'coe','cgpa':'9.0','name':'nikhil','year':'2'},
+	{'branch':'coe','cgpa':'9.1','name':'sanchit','year':'2'},
+	{'branch':'it','cgpa':'9.3','name':'aditya','year':'2'},
+	{'branch':'se','cgpa':'9.5','name':'sagar','year':'1'},
+	{'branch':'mce','cgpa':'7.8','name':'prateek','year':'3'},
+	{'branch':'ep','cgpa':'9.1','name':'sahil','year':'2'}]
+file=open('f2.csv','w')
+fields=list(mydict[0].keys())
+writer=csv.DictWriter(file,fieldnames=fields)
+writer.writeheader()
+writer.writerows(mydict)
+file.close()
+
+import csv
+new_student=[{'name':'heta','branch':'bca','year':'2','cgpa':'8.5'},
+	{'name':'rekha','branch':'bba','year':'3','cgpa':'7.9'}]
+
+file=open('f2.csv','a')
+fields=list(new_student[0].keys())
+dict_writer=csv.DictWriter(file,fieldnames=fields)
+dict_writer.writerows(new_student)
+file.close()
+
+4.
+
+import csv
+
+file=open('f2.csv','r')
+dict=csv.DictReader(file)
+
+for row in dict:
+	print(row)
+file.close()
+
+5.
+import pandas as pd
+data=[
+	['aaa',20000],
+	['bbb',25000],
+	['ccc',35000] ]
+
+df=pd.DataFrame(data)
+df.to_csv('f3.csv','w')
+
+import pandas as pd
+data=["tisha","anandi","tanvi","khushali"]
+df=pd.DataFrame(data,index=['a','b','c','d'])
+df.to_csv('f3.csv',mode='a',header=False)
+
+6.
+import pandas as pd
+df=pd.read_csv('f3.csv','r')
+print(df)
+print(df.values)
+df=pd.read_csv('f3.csv','r',index_col=[0])
+print(df)
+print(df.values)
+
+7.
+pip install openpyxl
+
+import pandas as pd
+stud_data=[
+	['isha','mca',80.7],
+	['karan','BCOM',67.78],
+	['priya','bba',57],
+	['swati','ca',78] ]
+w=pd.ExcelWriter('f4.xlsx')
+df=pd.DataFrame(stud_data,index=['f0','f1','f2','f3'],columns=['name','degree','per'])
+df.to_excel(w)
+w.close()
+
+8.
+import pandas as pd
+df=pd.read_excel(r'f4.xlsx')
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',index_col=0)
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',index_col=0,sheet_name='mca')
+print("\n",df)
+df=pd.read_excel(r'f4.xlsx',sheet_name=['svpatel','bca'])
+print("\n",df['svpatel'])
+print("\n",df['bca'].values)

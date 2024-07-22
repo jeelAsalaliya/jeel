@@ -1,0 +1,22 @@
+┌─────────┬──────────────┬──────┐
+│ roll_no │     name     │ year │
+├─────────┼──────────────┼──────┤
+│ 1       │ viral patel  │ fy   │
+│ 2       │ sanket patel │ fy   │
+└─────────┴──────────────┴──────┘
+┌─────────┬──────────────┬──────┐
+│ roll_no │     name     │ year │
+├─────────┼──────────────┼──────┤
+│ 1       │ viral patel  │ fy   │
+│ 2       │ sanket patel │ fy   │
+└─────────┴──────────────┴──────┘
+roll_no  name          year
+-------  ------------  ----
+1        viral patel   fy  
+2        sanket patel  fy  
+| roll_no |     name     | year |
+|---------|--------------|------|
+| 1       | viral patel  | fy   |
+| 2       | sanket patel | fy   |
+INSERT INTO "table"(roll_no,name,year) VALUES(1,'viral patel','fy');
+INSERT INTO "table"(roll_no,name,year) VALUES(2,'sanket patel','fy');

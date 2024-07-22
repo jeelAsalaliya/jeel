@@ -1,0 +1,51 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE t2(col mytype);
+INSERT INTO t2 VALUES(1);
+INSERT INTO t2 VALUES(2);
+INSERT INTO t2 VALUES(3.5);
+INSERT INTO t2 VALUES(4);
+INSERT INTO t2 VALUES(5);
+INSERT INTO t2 VALUES(NULL);
+INSERT INTO t2 VALUES('viral');
+INSERT INTO t2 VALUES('patel');
+INSERT INTO t2 VALUES(X'011001');
+INSERT INTO t2 VALUES(X'a1f2');
+INSERT INTO t2 VALUES('2023-07-23');
+INSERT INTO t2 VALUES(1);
+INSERT INTO t2 VALUES(0);
+CREATE TABLE t1(c1,c2 null,c3 int,c4 numeric,c5 float,c6 varchar(20),c7 blob,c8 date,c9 boolean);
+INSERT INTO t1 VALUES(1,1,1,1,1.0,'1',1,1,1);
+INSERT INTO t1 VALUES(1.5,1.5,1.5,1.5,1.5,'1.5',1.5,1.5,1.5);
+INSERT INTO t1 VALUES('abc','abc','abc','abc','abc','abc','abc','abc','abc');
+INSERT INTO t1 VALUES(X'abcd',X'abcd',X'abcd',X'abcd',X'abcd',X'abcd',X'abcd',X'abcd',X'abcd');
+INSERT INTO t1 VALUES(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO t1 VALUES('2023-07-23','2023-07-23','2023-07-23','2023-07-23','2023-07-23','2023-07-23','2023-07-23','2023-07-23','2023-07-23');
+INSERT INTO t1 VALUES(1,1,1,1,1.0,'1',1,1,1);
+CREATE TABLE IF NOT EXISTS "student"
+(
+ roll_no integer,
+ name text not null,
+ year text
+);
+INSERT INTO student VALUES(1,'viral patel','fy');
+INSERT INTO student VALUES(2,'sanket patel','fy');
+CREATE TABLE stud
+(
+ roll_no integer,
+ name text,
+ year text,
+ primary key(roll_no,year)
+);
+INSERT INTO stud VALUES(1,'viral patel','fy');
+INSERT INTO stud VALUES(2,'sanket patel','fy');
+CREATE TABLE account
+(
+ ano int primary key,
+ balance float
+);
+INSERT INTO account VALUES(101,3299.9999999999999999);
+INSERT INTO account VALUES(102,9899.9999999999999996);
+INSERT INTO account VALUES(103,2200.0);
+INSERT INTO account VALUES(104,3299.9999999999999999);
+COMMIT;

@@ -1,0 +1,392 @@
+	
+	assignment-2
+
+Q-1 Create triggers which will not allow insert, update and delete operations on following table :
+RESULT(rno, name, rank)
+
+create trigger trg_dept_before_insert 
+before insert
+on dept
+begin
+select raise(abort,'can not insert into dept table');
+end;
+
+insert into dept values(1007,'operations','baroda');
+Error: can not insert into dept table
+
+
+create table result
+(
+ rno number primary key,
+ name text,
+ rank integer
+);
+
+insert into result values(1,'jeel',5);
+insert into result values(2,'krina',4);
+insert into result values(3,'harshil',3);
+insert into result values(4,'om',2);
+insert into result values(5,'kashyap',1);
+
+sqlite> select *from result;
++----------------------+
+¦ rno ¦  name   ¦ rank ¦
++-----+---------+------¦
+¦ 1   ¦ jeel    ¦ 5    ¦
+¦ 2   ¦ krina   ¦ 4    ¦
+¦ 3   ¦ harshil ¦ 3    ¦
+¦ 4   ¦ om      ¦ 2    ¦
+¦ 5   ¦ kashyap ¦ 1    ¦
++----------------------+
+create trigger trg_result_before_insert
+before insert
+on result
+begin
+select raise(abort,'can not insert into result table');
+end;
+sqlite> insert into result values(6,'kashyap',6);
+Error: can not insert into result table
+
+create trigger trg_result_before_update
+before update
+on result
+begin
+select case
+when rank<=0 then raise(abort,'invalid rank')
+end;
+
+sqlite> update result set name='k' where name='jeel';
+sqlite> update result set rno=8 where rno=1;
+sqlite> select *from result;
++----------------------+
+¦ rno ¦  name   ¦ rank ¦
++-----+---------+------¦
+¦ 8   ¦ k       ¦ 5    ¦
+¦ 2   ¦ krina   ¦ 4    ¦
+¦ 3   ¦ harshil ¦ 3    ¦
+¦ 4   ¦ om      ¦ 2    ¦
+¦ 5   ¦ kashyap ¦ 1    ¦
++----------------------+
+create trigger trg_result_before_delete
+before delete
+on result
+begin
+select case
+when(select count(rno) from result where rno=old.rno)>0
+then raise(abort,'child table having data')
+end;
+end;
+
+sqlite> delete from result where rno=0;
+sqlite> delete from result where rank=1;
+Error: child table having data
+
+Q-2 create trigger for EMP(eno, name, salary) table which will not allow to update salary in march
+month.
+
+create table emp1
+(
+ eno int,
+ name text,
+ salary real
+);
+
+insert into emp1 values(7890,'king',5000);
+insert into emp1 values(7789,'jones',3000);
+insert into emp1 values(6789,'smit',null);
+insert into emp1 values(5678,'milen',6700);
+insert into emp1 values(9089,'scott',3000);
+
+sqlite> select *from emp1;
++-----------------------+
+¦ eno  ¦ name  ¦ salary ¦
++------+-------+--------¦
+¦ 7890 ¦ king  ¦ 5000.0 ¦
+¦ 7789 ¦ jones ¦ 3000.0 ¦
+¦ 6789 ¦ smit  ¦        ¦
+¦ 5678 ¦ milen ¦ 6700.0 ¦
+¦ 9089 ¦ scott ¦ 3000.0 ¦
++-----------------------+
+
+create trigger tr4
+before update of salary
+on emp1
+begin
+select case
+when strftime('%m','now')-0=3
+then
+raise(abort,'you can not applicable update the salary')
+end;
+end;
+
+update emp set salary='20000' where eno=105;
+
+3.
+
+create table elog
+(
+ eno integer,
+ operations text,
+date_time
+);
+
+create table emp1
+(
+ eno  integer primary key,
+ name text,
+ salary int
+);
+
+insert into emp1 values(101,'jeel',50000);
+insert into emp1 values(102,'kripa',4000);
+insert into emp1 values(103,'bhavay',28000);
+insert into emp1 values(104,'jaydeep',30000);
+insert into emp1 values(105,'krinal',15000);
+
+create trigger tr5
+after insert 
+on emp1
+when new.eno or new.name or new.salary 
+begin
+insert into elog(eno,operations,date_time)values(new.eno,'insert',strftime('%Y-%m-%d %H:%M:%S','now'));
+end;
+
+insert into emp1 values(106,'fenil',35000);
+select *from elog;
+select *from emp1;
+
+----------------------------------------+
+¦ eno ¦ operations ¦      date_time      ¦
++-----+------------+---------------------¦
+¦ 106 ¦ insert     ¦ 2023-08-24 03:18:31 ¦
++----------------------------------------+
+
+create trigger tr6
+after update
+on emp1
+when old.eno<>new.eno or old.name<>new.name or old.salary<>new.salary
+begin
+insert into elog(eno,operations,date_time)values(new.eno,'update',strftime('%y-%m-%d %h:%m:%s','now'));
+end;
+
+sqlite> update emp1 set name='smita' where eno='104';
+sqlite> select *from emp1;
++-----------------------+
+¦ eno ¦  name  ¦ salary ¦
++-----+--------+--------¦
+¦ 101 ¦ jeel   ¦ 50000  ¦
+¦ 102 ¦ kripa  ¦ 4000   ¦
+¦ 103 ¦ bhavay ¦ 28000  ¦
+¦ 104 ¦ smita  ¦ 30000  ¦
+¦ 105 ¦ krinal ¦ 15000  ¦
+¦ 106 ¦ fenil  ¦ 35000  ¦
++-----------------------
+
+create trigger tr7
+after delete on emp1
+begin
+insert into elog(eno,operations,date_time)values(old.eno,'delete',strftime('%y-%m-%d %h:%m:%s','now'));
+end;
+
+delete from emp1 where eno=105;
+select *from elog;
+select *from emp1;
+sqlite> select *from elog;
++----------------------------------------+
+¦ eno ¦ operations ¦      date_time      ¦
++-----+------------+---------------------¦
+¦ 106 ¦ insert     ¦ 2023-08-24 03:18:31 ¦
+¦ 104 ¦ update     ¦                     ¦
+¦ 105 ¦ delete     ¦                     ¦
++----------------------------------------+
+sqlite> select *from emp1;
++-----------------------+
+¦ eno ¦  name  ¦ salary ¦
++-----+--------+--------¦
+¦ 101 ¦ jeel   ¦ 50000  ¦
+¦ 102 ¦ kripa  ¦ 4000   ¦
+¦ 103 ¦ bhavay ¦ 28000  ¦
+¦ 104 ¦ smita  ¦ 30000  ¦
+¦ 106 ¦ fenil  ¦ 35000  ¦
++-----------------------+
+sqlite>
+
+4.
+create table account
+(
+ ano integer primary key,
+ balance int
+);
+
+
+insert into account values(111,'30000');
+insert into account values(112,'40000');
+insert into account values(113,'35000');
+insert into account values(114,'20000');
+insert into account values(115,'18000');
+
+create trigger tr8
+before update of balance
+on account
+when new.balance<500
+begin
+select raise(abort,'withdraw amount is more than account balance');
+end;
+
+update account set balance=300 where balance=18000;
+Runtime error: withdraw amount is more than account balance (19)
+sqlite>
+
+5.
+create table student
+(
+ mo integer primary key,
+ s1 int,
+ s2 numeric,
+ s3 integer
+);
+
+insert into student values(1,50,50,50);
+insert into student values(2,40,50,45);
+insert into student values(3,35,50,45);
+insert into student values(4,45,45,45);
+insert into student values(5,50,45,50);
+
+.mode box
+.output db1.txt
+.dump student
+.output stdout
+
+6.
+ 
+.mode box
+.output db1.doc
+.schema student
+.output stdout
+
+7.
+
+.output db2.sql
+.dump
+.output stdout
+
+8.
+
+.headers on
+.mode csv
+.output emp.csv
+select *from emp;
+
+9.
+
+.mode csv
+.import student.csv
+.mode box
+select *from student
+
+10.
+
+import module1
+module1.sub(par1,par2):
+	print("sub:",par1-par2)
+module1.add(par1,par2):
+	print("sum:",par1+par2)
+module1.mul(par1,par2):
+	print("mul:",par1*par2)
+module1.divpar1,par2):
+	print("div:",par1/par2)
+
+12.
+import sqlite3
+cn=sqlite3.connect("db1.db")
+
+print("database open successfully")
+
+cn.execute('''create table developer
+(id int primary key,
+name text not null,
+age int,
+salary real);''')
+
+print("table created successfully")
+cn.close()
+
+import sqlite3
+cn=sqlite3.connect("db1.db")
+
+cn.execute("insert into developer(id,name,age,salary)values(1,'amit',32,25000.00)");
+cn.execute('''insert into developer(id,name,age,salary)values(2,'kinjal',35,15000.00)''');
+cn.execute('''insert into developer(id,name,age,salary)values(3,'priyank',36,35000.00)''');
+cn.execute('''insert into developer(id,name,age,salary)values(4,'rahul',30,40000.00)''');
+cn.execute('''insert into developer(id,name,age,salary)values(5,'jay',33,45000.00)''');
+
+cn.commit()
+print("record created successfully")
+cn.close()
+
+import sqlite3
+cn=sqlite3.connect("db1.db")
+cn=cn.execute("select id,name,age,salary from developer")
+for row in cn:
+	print("id=",row[0])
+	print("name=",row[1])
+	print("age=",row[2])
+	print("salary=",row[3])
+
+print("operation performed successfully")
+cn.close()
+
+o.p::
+id= 1
+name= amit
+age= 32
+salary= 25000.0
+id= 2
+name= kinjal
+age= 35
+salary= 15000.0
+id= 3
+name= priyank
+age= 36
+salary= 35000.0
+id= 4
+name= rahul
+age= 30
+salary= 40000.0
+id= 5
+name= jay
+age= 33
+salary= 45000.0
+operation performed successfully
+
+import sqlite3
+cn=sqlite3.connect("db1.db")
+cn.execute("update developer set salary=6000.00 where id=1")
+cn.commit()
+print("total number of rows updated:",cn.total_changes)
+cn.close()
+
+import sqlite3
+cn=sqlite3.connect("db1.db")
+cn.execute("delete from developer where id=2")
+cn.commit()
+print("total number of record deleted:",cn.total_changes)
+cn.execute("select *from developer")
+cn.close()
+
+import sqlite3
+cn=sqlite3.connect("db1.db")
+print('--------------fetchall data--------------')
+cursor=cn.execute("select *from developer")
+print(cursor.fetchall())
+
+print('--------------fetch one record----------')
+cursor=cn.execute("select *from developer")
+print(cursor.fetchone())
+cn.commit()
+cn.close()
+
+o.p::--------------fetchall data--------------
+[(1, 'amit', 32, 6000.0), (3, 'priyank', 36, 35000.0), (4, 'rahul', 30, 40000.0), (5, 'jay', 33, 45000.0)]
+--------------fetch one record----------
+(1, 'amit', 32, 6000.0)

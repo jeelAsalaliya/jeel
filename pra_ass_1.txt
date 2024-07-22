@@ -1,0 +1,627 @@
+QUESTION-1.....
+
+      (1)
+
+.open as.db
+
+      (2)   	
+
+--create table parin(c1,c2 null,c3 int,c4 numeric,c5 float,c6 varchar(20),c7 blob,c8 date,c9 boolean);
+
+      (3)
+
+--insert into parin values
+(1,1,1,1,1,1,1,1,1),
+(1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5),
+('abc','abc','abc','abc','abc','abc','abc','abc','abc'),
+(x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd',x'abcd'),
+(null,null,null,null,null,null,null,null,null),
+(date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now')),
+(true,true,true,true,true,true,true,true,true);
+
+
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|     c1     |     c2     |     c3     |     c4     |     c5     |     c6     |     c7     |     c8     |     c9     |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+| 1          | 1          | 1          | 1          | 1.0        | 1          | 1          | 1          | 1          |
+| 1.5        | 1.5        | 1.5        | 1.5        | 1.5        | 1.5        | 1.5        | 1.5        | 1.5        |
+| abc        | abc        | abc        | abc        | abc        | abc        | abc        | abc        | abc        |
+| ??         | ??         | ??         | ??         | ??         | ??         | ??         | ??         | ??         |
+|            |            |            |            |            |            |            |            |            |
+| 2023-07-20 | 2023-07-20 | 2023-07-20 | 2023-07-20 | 2023-07-20 | 2023-07-20 | 2023-07-20 | 2023-07-20 | 2023-07-20 |
+| 1          | 1          | 1          | 1          | 1.0        | 1          | 1          | 1          | 1          |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+      (4)
+
+.mode box
+
+select
+c1 "data",
+typeof(c1)"c1-none",
+typeof(c2)"c2-null",
+typeof(c3)"c3-int",
+typeof(c4)"c4-numeric",
+typeof(c5)"c5-float",
+typeof(c6)"c6-varchar",
+typeof(c7)"c7-blob",
+typeof(c8)"c8-date",
+typeof(c9)"c9-boolean"
+from parin;
+
++------------+---------+---------+---------+------------+----------+------------+---------+---------+------------+
+|    data    | c1-none | c2-null | c3-int  | c4-numeric | c5-float | c6-varchar | c7-blob | c8-date | c9-boolean |
++------------+---------+---------+---------+------------+----------+------------+---------+---------+------------+
+| 1          | integer | integer | integer | integer    | real     | text       | integer | integer | integer    |
+| 1.5        | real    | real    | real    | real       | real     | text       | real    | real    | real       |
+| abc        | text    | text    | text    | text       | text     | text       | text    | text    | text       |
+| ??         | blob    | blob    | blob    | blob       | blob     | blob       | blob    | blob    | blob       |
+|            | null    | null    | null    | null       | null     | null       | null    | null    | null       |
+| 2023-07-20 | text    | text    | text    | text       | text     | text       | text    | text    | text       |
+| 1          | integer | integer | integer | integer    | real     | text       | integer | integer | integer    |
++------------+---------+---------+---------+------------+----------+------------+---------+---------+------------+
+
+QUESION-2.....
+
+--create table account
+(
+ ano int,
+ balance text
+);
+
+--insert into account values(1,1000),(2,2000),(3,3000),(4,4000),(5,5000);
+
+sqlite> select * from account;
++-----+---------+
+| ano | balance |
++-----+---------+
+| 1   | 1000    |
+| 2   | 2000    |
+| 3   | 3000    |
+| 4   | 4000    |
+| 5   | 5000    |
++-----+---------+
+
+(1)
+
+--update account set balance=balance-1000 where ano=1;
+sqlite> select * from account;
++-----+---------+
+| ano | balance |
++-----+---------+
+| 1   | 0       |
+| 2   | 2000    |
+| 3   | 3000    |
+| 4   | 4000    |
+| 5   | 5000    |
++-----+---------+
+
+--update account set balance=balance+1000 where ano=2;
+sqlite> select * from account;
++-----+---------+
+| ano | balance |
++-----+---------+
+| 1   | 0       |
+| 2   | 3000    |
+| 3   | 3000    |
+| 4   | 4000    |
+| 5   | 5000    |
++-----+---------+
+
+
+(2)
+
+--update account set balance=balance+balance*10/100;
+sqlite> select * from account;
++-----+---------+
+| ano | balance |
++-----+---------+
+| 1   | 0       |
+| 2   | 3300    |
+| 3   | 3300    |
+| 4   | 4400    |
+| 5   | 5500    |
++-----+---------+
+
+QUESTION-3.....
+
+create table student
+(
+ rno int,
+ year text,
+ name text not null,
+ primary key(rno,year)
+);
+
+insert into student values(1,2020,'urvisha'),(2,2010,'parin'),(3,2015,'isha'),(4,2015,'udaya'),(5,2019,'prit');
+sqlite> select * from student;
++-----+------+---------+
+| rno | year |  name   |
++-----+------+---------+
+| 1   | 2020 | urvisha |
+| 2   | 2010 | parin   |
+| 3   | 2015 | isha    |
+| 4   | 2015 | udaya   |
+| 5   | 2019 | prit    |
++-----+------+---------+
+
+--pragma foreign_key=on;
+
+create table result
+(
+ rno int,
+ year text,
+ per float,
+ foreign key(rno,year) references student(rno,year)
+);
+
+(1)
+
+--insert into result values(1,2020,92),(2,2010,85),(3,2015,58),(4,2015,56),(5,2019,33);
+sqlite> select * from result;
++-----+------+------+
+| rno | year | per  |
++-----+------+------+
+| 1   | 2020 | 92.0 |
+| 2   | 2010 | 85.0 |
+| 3   | 2015 | 58.0 |
+| 4   | 2015 | 56.0 |
+| 5   | 2019 | 33.0 |
++-----+------+------+
+
+(2)
+
+--alter table student add column mobnum int;
+sqlite> select * from student;
++-----+------+---------+--------+
+| rno | year |  name   | mobnum |
++-----+------+---------+--------+
+| 1   | 2020 | urvisha |        |
+| 2   | 2010 | parin   |        |
+| 3   | 2015 | isha    |        |
+| 4   | 2015 | udaya   |        |
+| 5   | 2019 | prit    |        |
++-----+------+---------+--------+
+
+(3)
+
+--alter table student rename mobnum to mobile;
+sqlite> select * from student;
++-----+------+---------+--------+
+| rno | year |  name   | mobile |
++-----+------+---------+--------+
+| 1   | 2020 | urvisha |        |
+| 2   | 2010 | parin   |        |
+| 3   | 2015 | isha    |        |
+| 4   | 2015 | udaya   |        |
+| 5   | 2019 | prit    |        |
++-----+------+---------+--------+
+
+(4)
+
+--update student set mobile=9876543210 where rno=1;
+sqlite> select * from student;
++-----+------+---------+------------+
+| rno | year |  name   |   mobile   |
++-----+------+---------+------------+
+| 1   | 2020 | urvisha | 9876543210 |
+| 2   | 2010 | parin   |            |
+| 3   | 2015 | isha    |            |
+| 4   | 2015 | udaya   |            |
+| 5   | 2019 | prit    |            |
++-----+------+---------+------------+
+
+(5)
+
+--alter table student drop column mobile;
+sqlite> select * from student;
++-----+------+---------+
+| rno | year |  name   |
++-----+------+---------+
+| 1   | 2020 | urvisha |
+| 2   | 2010 | parin   |
+| 3   | 2015 | isha    |
+| 4   | 2015 | udaya   |
+| 5   | 2019 | prit    |
++-----+------+---------+
+
+(6)
+
+--delete from student where rno=5;
+  delete from result where rno=5;
+sqlite> select * from student;
++-----+------+---------+
+| rno | year |  name   |
++-----+------+---------+
+| 1   | 2020 | urvisha |
+| 2   | 2010 | parin   |
+| 3   | 2015 | isha    |
+| 4   | 2015 | udaya   |
++-----+------+---------+
+
+(7)
+
+--update student set rno=86 where rno=2;
+  update result set rno=86 where rno=2;
+sqlite> select * from student;
++-----+------+---------+
+| rno | year |  name   |
++-----+------+---------+
+| 1   | 2020 | urvisha |
+| 86  | 2010 | parin   |
+| 3   | 2015 | isha    |
+| 4   | 2015 | udaya   |
++-----+------+---------+
+
+QUESTION-4.....
+
+--drop table student;
+--drop table result;
+
+--PRAGMA foreign_keys=on;
+
+CREATE TABLE STUDENT (
+    rno INTEGER PRIMARY KEY,
+    name text
+);
+
+CREATE TABLE RESULT (
+    rno INTEGER,
+    percentage int,
+    FOREIGN KEY (rno) REFERENCES STUDENT(rno) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO STUDENT (rno, name) VALUES (1, 'Kaushik');
+INSERT INTO STUDENT (rno, name) VALUES (2, 'ABC');
+INSERT INTO STUDENT (rno, name) VALUES (3, 'XYZ');
+INSERT INTO STUDENT (rno, name) VALUES (4, 'MNO');
+INSERT INTO STUDENT (rno, name) VALUES (5, 'OPQ');
+sqlite> select * from student;
++-----+---------+
+| rno |  name   |
++-----+---------+
+| 1   | Kaushik |
+| 2   | ABC     |
+| 3   | XYZ     |
+| 4   | MNO     |
+| 5   | OPQ     |
++-----+---------+
+
+INSERT INTO RESULT (rno, percentage) VALUES (1, 80);
+INSERT INTO RESULT (rno, percentage) VALUES (2, 90);
+INSERT INTO RESULT (rno, percentage) VALUES (3, 70);
+INSERT INTO RESULT (rno, percentage) VALUES (4, 85);
+INSERT INTO RESULT (rno, percentage) VALUES (5, 75);
+sqlite> select * from result;
++-----+------------+
+| rno | percentage |
++-----+------------+
+| 1   | 80         |
+| 2   | 90         |
+| 3   | 70         |
+| 4   | 85         |
+| 5   | 75         |
++-----+------------+
+
+(2)
+
+--DELETE FROM STUDENT WHERE rno = 1;
+sqlite> select * from student;
++-----+------+
+| rno | name |
++-----+------+
+| 2   | ABC  |
+| 3   | XYZ  |
+| 4   | MNO  |
+| 5   | OPQ  |
++-----+------+
+
+(3)
+
+--UPDATE STUDENT SET rno = 6 WHERE rno = 2;
+sqlite> select * from student;
++-----+------+
+| rno | name |
++-----+------+
+| 3   | XYZ  |
+| 4   | MNO  |
+| 5   | OPQ  |
+| 6   | ABC  |
++-----+------+
+
+--SELECT * FROM Student;
+--select * from result;
+
+QUESTION-5.....
+
+--SELECT * FROM emp;
+--SELECT * FROM emp2;
+
+--drop TABLE emp;
+--drop TABLE emp2;
+
+CREATE TABLE emp (
+    eno INTEGER,ename,esalary INTEGER
+);
+
+CREATE TABLE emp2 (
+    eno INTEGER,ename,esalary INTEGER
+);
+
+INSERT INTO emp VALUES(1,'ABC',90000);
+INSERT INTO emp VALUES(2,'CBC',60000);
+INSERT INTO emp VALUES(3,'XBC',60000);
+INSERT INTO emp VALUES(4,'SBC',30000);
+INSERT INTO emp VALUES(5,'HBC',80000);
+sqlite> select * from emp;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 3   | XBC   | 60000   |
+| 4   | SBC   | 30000   |
+| 5   | HBC   | 80000   |
++-----+-------+---------+
+
+OR
+
+sqlite> insert into emp values (6,'GHS',NULL);
+sqlite> select * from emp;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 3   | XBC   | 60000   |
+| 4   | SBC   | 30000   |
+| 5   | HBC   | 80000   |
+| 6   | GHS   |         |
++-----+-------+---------+
+
+INSERT INTO emp2 VALUES(6,'AIC',90000);
+INSERT INTO emp2 VALUES(3,'XBC',60000);
+INSERT INTO emp2 VALUES(7,'XJC',60000);
+INSERT INTO emp2 VALUES(8,'STC',30000);
+INSERT INTO emp2 VALUES(4,'SBC',30000);
+sqlite> select * from emp2;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 6   | AIC   | 90000   |
+| 3   | XBC   | 60000   |
+| 7   | XJC   | 60000   |
+| 8   | STC   | 30000   |
+| 4   | SBC   | 30000   |
++-----+-------+---------+
+
+--select distinct(esalary) from emp;
++---------+
+| esalary |
++---------+
+| 90000   |
+| 60000   |
+| 30000   |
+| 80000   |
++---------+
+
+--select * from emp where eno=3;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 3   | XBC   | 60000   |
++-----+-------+---------+
+
+--select * from emp where esalary between 20000 and 70000;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 2   | CBC   | 60000   |
+| 3   | XBC   | 60000   |
+| 4   | SBC   | 30000   |
++-----+-------+---------+
+
+--select eno,ename from emp where esalary in (select max(esalary) from emp);
++-----+-------+
+| eno | ename |
++-----+-------+
+| 1   | ABC   |
++-----+-------+
+
+--select * from emp where ename like 'A%';
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
++-----+-------+---------+
+
+--select * from emp
+  union
+  select * from emp2;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 3   | XBC   | 60000   |
+| 4   | SBC   | 30000   |
+| 5   | HBC   | 80000   |
+| 6   | AIC   | 90000   |
+| 7   | XJC   | 60000   |
+| 8   | STC   | 30000   |
++-----+-------+---------+
+
+--select * from emp
+  intersect
+  select * from emp2;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 3   | XBC   | 60000   |
+| 4   | SBC   | 30000   |
++-----+-------+---------+
+
+--select * from emp
+  except
+  select * from emp2;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 5   | HBC   | 80000   |
++-----+-------+---------+
+
+--select * from emp limit 3;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 3   | XBC   | 60000   |
++-----+-------+---------+
+
+--select * from emp where esalary is null;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 6   | GHS   |         |
++-----+-------+---------+
+
+--select * from emp where esalary is not null;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 3   | XBC   | 60000   |
+| 4   | SBC   | 30000   |
+| 5   | HBC   | 80000   |
++-----+-------+---------+
+
+--select * from emp group by esalary;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 6   | GHS   |         |
+| 4   | SBC   | 30000   |
+| 2   | CBC   | 60000   |
+| 5   | HBC   | 80000   |
+| 1   | ABC   | 90000   |
++-----+-------+---------+
+
+--select * from emp order by ename;
++-----+-------+---------+
+| eno | ename | esalary |
++-----+-------+---------+
+| 1   | ABC   | 90000   |
+| 2   | CBC   | 60000   |
+| 6   | GHS   |         |
+| 5   | HBC   | 80000   |
+| 4   | SBC   | 30000   |
+| 3   | XBC   | 60000   |
++-----+-------+---------+
+
+
+QUESTION-6.....
+
+CREATE TABLE table1 (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL
+);
+
+CREATE TABLE table2 (
+  id INTEGER PRIMARY KEY,
+  address TEXT NOT NULL,
+  phone TEXT NOT NULL
+);
+
+INSERT INTO table1 (id, name, age) VALUES (1, 'XYZ', 25);
+INSERT INTO table1 (id, name, age) VALUES (2, 'ABC', 30);
+INSERT INTO table1 (id, name, age) VALUES (3, 'DEF', 35);
+sqlite> select * from TABLE1;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+| 1  | XYZ  | 25  |
+| 2  | ABC  | 30  |
+| 3  | DEF  | 35  |
++----+------+-----+
+
+INSERT INTO table2 (id, address, phone) VALUES (1, 'VARACHHA', '6565656565');
+INSERT INTO table2 (id, address, phone) VALUES (2, 'VESU', '89898989');
+INSERT INTO table2 (id, address, phone) VALUES (3, 'ADAJAN', '909090909');
+sqlite> select * from TABLE2;
++----+----------+------------+
+| id | address  |   phone    |
++----+----------+------------+
+| 1  | VARACHHA | 6565656565 |
+| 2  | VESU     | 89898989   |
+| 3  | ADAJAN   | 909090909  |
++----+----------+------------+
+
+-- INNER JOIN
+SELECT *
+FROM table1
+INNER JOIN table2 ON table1.id = table2.id;
++----+------+-----+----+----------+------------+
+| id | name | age | id | address  |   phone    |
++----+------+-----+----+----------+------------+
+| 1  | XYZ  | 25  | 1  | VARACHHA | 6565656565 |
+| 2  | ABC  | 30  | 2  | VESU     | 89898989   |
+| 3  | DEF  | 35  | 3  | ADAJAN   | 909090909  |
++----+------+-----+----+----------+------------+
+
+-- NATURAL JOIN
+SELECT *
+FROM table1
+NATURAL JOIN table2;
++----+------+-----+----------+------------+
+| id | name | age | address  |   phone    |
++----+------+-----+----------+------------+
+| 1  | XYZ  | 25  | VARACHHA | 6565656565 |
+| 2  | ABC  | 30  | VESU     | 89898989   |
+| 3  | DEF  | 35  | ADAJAN   | 909090909  |
++----+------+-----+----------+------------+
+
+-- LEFT JOIN
+SELECT *
+FROM table1
+LEFT JOIN table2 ON table1.id = table2.id;
++----+------+-----+----+----------+------------+
+| id | name | age | id | address  |   phone    |
++----+------+-----+----+----------+------------+
+| 1  | XYZ  | 25  | 1  | VARACHHA | 6565656565 |
+| 2  | ABC  | 30  | 2  | VESU     | 89898989   |
+| 3  | DEF  | 35  | 3  | ADAJAN   | 909090909  |
++----+------+-----+----+----------+------------+
+
+-- RIGHT JOIN
+SELECT *
+FROM table1
+RIGHT JOIN table2 ON table1.id = table2.id;
+
+--SELECT *
+FROM table1
+FULL OUTER JOIN table2 ON table1.id = table2.id;
+
+--SELECT *
+FROM table1
+FULL OUTER JOIN table2 ON table1.id = table2.id;
+
+--SELECT *
+FROM table1
+CROSS JOIN table2;
++----+------+-----+----+----------+------------+
+| id | name | age | id | address  |   phone    |
++----+------+-----+----+----------+------------+
+| 1  | XYZ  | 25  | 1  | VARACHHA | 6565656565 |
+| 1  | XYZ  | 25  | 2  | VESU     | 89898989   |
+| 1  | XYZ  | 25  | 3  | ADAJAN   | 909090909  |
+| 2  | ABC  | 30  | 1  | VARACHHA | 6565656565 |
+| 2  | ABC  | 30  | 2  | VESU     | 89898989   |
+| 2  | ABC  | 30  | 3  | ADAJAN   | 909090909  |
+| 3  | DEF  | 35  | 1  | VARACHHA | 6565656565 |
+| 3  | DEF  | 35  | 2  | VESU     | 89898989   |
+| 3  | DEF  | 35  | 3  | ADAJAN   | 909090909  |
++----+------+-----+----+----------+------------+

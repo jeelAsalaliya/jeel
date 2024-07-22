@@ -1,0 +1,665 @@
+
+		Practical Assignment-1
+
+1.
+Q-1 Open SQLite using command prompt and do the following task.
+?Create database of your name in SQLite (like ram.db)
+?In this database create one table with different types of columns like table T1 given below.
+ T1(c1,c2 NULL,c3 int,c4 numeric,c5 float,c6 varchar(20),c7 BLOB,c8 date,c9 boolean,c10 mytype)
+?Insert different types of data in every column (to check SQLite is manifest type system).
+ You can take following type of values for every column:
+ 3, 4.5, '5', '6.7', "8", "9.5", 'abc', "ABC", x'000110', x'AB26', null, date('now'), true, false
+?Display table data and type of all data in box mode. (to check storage class of data according to
+affinity type of column)
+[*note : Use .databases, .open, .tables, .mode and .quit commands, typeof() function ]
+
+.open ram.db
+.databases
+.tables
+
+create table t1(c1,c2 null,c3 int,c4 numeric,c5 float,c6 varchar(10),c7 blob,c8 date,c9 boolean,c10 mytype);
+
+insert into t1 values 
+(1,1,1,1,1,1,1,1,1,1),
+(4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5),
+('5','5','5','5','5','5','5','5','5','5'),
+('6.7','6.7','6.7','6.7','6.7','6.7','6.7','6.7','6.7','6.7'),
+("8","8","8","8","8","8","8","8","8","8"),
+("9.5","9.5","9.5","9.5","9.5","9.5","9.5","9.5","9.5","9.5"),
+('abc','abc','abc','abc','abc','abc','abc','abc','abc','abc'),
+("ABC","ABC","ABC","ABC","ABC","ABC","ABC","ABC","ABC","ABC"),
+(x'AB26',x'AB26',x'AB26',x'AB26',x'AB26',x'AB26',x'AB26',x'AB26',x'AB26',x'AB26'),
+(null,null,null,null,null,null,null,null,null,null),
+(date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'),date('now'));
+
+.mode box
+
+select 
+c1"data",
+typeof(c1)"c1-none",
+typeof(c2)"c2-null",
+typeof(c3)"c3-int",
+typeof(c4)"c4-numeric",
+typeof(c5)"c5-float",
+typeof(c6)"c6-varchar",
+typeof(c7)"c7-blob",
+typeof(c8)"c8-date",
+typeof(c9)"c9-boolean",
+typeof(c10)"c10-type"
+from t1;
+
++-------------------------------------------------------------------------------
+--------------------------------------------+
+     data      c1-none   c2-null   c3-int    c4-numeric   c5-float   c6-varchar
+  c7-blob   c8-date   c9-boolean   c10-type  
++------------+---------+---------+---------+------------+----------+------------
++---------+---------+------------+---------- 
+  1            integer   integer   integer   integer      real       text
+  integer   integer   integer      integer   
+  4.5          real      real      real      real         real       text
+  real      real      real         real      
+  5            text      text      integer   integer      real       text
+  text      integer   integer      integer   
+  6.7          text      text      real      real         real       text
+  text      real      real         real      
+  8            text      text      integer   integer      real       text
+  text      integer   integer      integer   
+  9.5          text      text      real      real         real       text
+  text      real      real         real      
+  abc          text      text      text      text         text       text
+  text      text      text         text      
+  ABC          text      text      text      text         text       text
+  text      text      text         text      
+  ?&            blob      blob      blob      blob         blob       blob
+   blob      blob      blob         blob      
+               null      null      null      null         null       null
+  null      null      null         null      
+  2023-07-23   text      text      text      text         text       text
+  text      text      text         text      
++-------------------------------------------------------------------------------
+--------------------------------------------+
+
+2.
+Q-2 Using begin Commit and begin rollback do following transactions:
+1) transfer 1000 rs from one account to another.
+2) Temporary increase balance 10% just to check result of balance.
+
+create table account
+(
+ ano int primary key,
+ balance float
+);
+
+insert into account values
+(101,5000),
+(102,7000),
+(103,2000),
+(104,3000);
+
+.mode box
+select *from account;
++---------------+
+  ano   balance  
++-----+--------- 
+  101   5000.0   
+  102   7000.0   
+  103   2000.0   
+  104   3000.0   
++---------------+
+[1]
+begin;
+update account set balance=balance-1000 where ano=101;
+update account set balance=balance+1000 where ano=102;
+commit;
+select *from account;
++---------------+
+  ano   balance  
++-----+--------- 
+  101   4000.0   
+  102   8000.0   
+  103   2000.0   
+  104   3000.0   
++---------------+
+
+[2]
+begin;
+update account set balance=balance+balance*10/100;
+rollback;
+select *from account;
++---------------+
+  ano   balance  
++-----+--------- 
+  101   4000.0   
+  102   8000.0   
+  103   2000.0   
+  104   3000.0   
++---------------+
+3.
+Q-3 Create STUDENT(rno, year, name) table and RESULT(rno, year, percentage) table. Insert
+Composite Primary key (rno,year) on STUDENT table and Insert Composite Foreign key (rno,year)
+on RESULT table. Write SQL query to do following task.
+1) Insert minimum 5 records in both table (take roll no 1 to 5)
+2) Add new column  mobnum  in STUDENT table
+3) Rename column  mobnum  to  mobile 
+4) Insert mobile number 9876543210 whose roll no is 1
+5) Drop column  mobile  from STUDENT table
+6) Delete any one record from STUDENT table whose reference is taken in RESULT table
+(without using ON DELETE CASCADE)
+7) Change roll no of any one student in STUDENT table whose reference is taken in RESULT
+table (without using ON UPDATE CASCADE)
+[*Note : use PRAGMA foreign_keys, table level composite primary key and composite foreign key,
+alter table query ]
+
+create table student
+(
+ rno integer,
+ year text,
+ name text not null,
+ primary key(rno,year)
+);
+
+create table result
+(
+ rno integer,
+ year text,
+ percentage float,
+ foreign key(rno,year) references student(rno,year)
+);
+
+insert into student values(1,'fy','jeel');
+insert into student values(2,'fy','krina');
+insert into student values(3,'fy','harshil');
+insert into student values(4,'fy','divya');
+insert into student values(5,'fy','shruti');
+
+insert into result values(1,'fy',76);
+insert into result values(2,'fy',67);
+insert into result values(3,'fy',98);
+insert into result values(4,'fy',56);
+insert into result values(5,'fy',78);
+
+select *from student;
++----------------------+
+  rno   year    name    
++-----+------+--------- 
+  1     fy     jeel     
+  2     fy     krina    
+  5     fy     shruti   
+  3     fy     harshil  
+  4     fy     divya    
++----------------------+
+select *from result;
++-------------------------+
+  rno   year   percentage  
++-----+------+------------ 
+  1     fy     76.0        
+  2     fy     67.0        
+  3     fy     98.0        
+  4     fy     56.0        
+  5     fy     78.0        
++-------------------------+
+alter table student add mobno number;
+qlite> select *from student;
+------------------------------+
+ rno   year    name     mobno  
+-----+------+---------+------- 
+ 1     fy     jeel             
+ 2     fy     krina            
+ 3     fy     harshil          
+ 4     fy     divya            
+ 5     fy     shruti           
+------------------------------+
+alter table student rename column mobno to mobile;
++-------------------------------+
+  rno   year    name     mobile  
++-----+------+---------+-------- 
+  1     fy     jeel              
+  2     fy     krina             
+  3     fy     harshil           
+  4     fy     divya             
+  5     fy     shruti            
++-------------------------------+
+
+update student set mobile=9876543210 where rno=1;
++-----------------------------------+
+  rno   year    name       mobile    
++-----+------+---------+------------ 
+  1     fy     jeel      9876543210  
+  2     fy     krina                 
+  3     fy     harshil               
+  4     fy     divya                 
+  5     fy     shruti                
++-----------------------------------+
+alter table student drop column mobile;
++----------------------+
+  rno   year    name    
++-----+------+--------- 
+  1     fy     jeel     
+  2     fy     krina    
+  3     fy     harshil  
+  4     fy     divya    
+  5     fy     shruti   
++----------------------+
+ delete from student where rno=1;
+ delete from result where rno=1;
++-------------------------+
+  rno   year   percentage  
++-----+------+------------ 
+  2     fy     67.0        
+  3     fy     98.0        
+  4     fy     56.0        
+  5     fy     78.0        
++-------------------------+
+sqlite> select *from student;
++----------------------+
+  rno   year    name    
++-----+------+--------- 
+  2     fy     krina    
+  3     fy     harshil  
+  4     fy     divya    
+  5     fy     shruti   
++----------------------+
+insert into student values(6,'ty','ashish');
+delete from student where rno=5;
+delete from result where rno=5;
+insert into result values(6,'ty','81.00');
++-------------------------+
+  rno   year   percentage  
++-----+------+------------ 
+  2     fy     67.0        
+  3     fy     98.0        
+  4     fy     56.0        
+  6     ty     81.0        
++-------------------------+
+sqlite> select *from student;
++----------------------+
+  rno   year    name    
++-----+------+--------- 
+  2     fy     krina    
+  3     fy     harshil  
+  4     fy     divya    
+  6     ty     ashish   
+
+Q-4 Create STUDENT(rno, name) table and RESULT(rno, percentage) table with primary key and
+foreign key. Foreign key must be created with ON DELETE CASCADE and ON UPDATE CASCADE.
+Write SQL query to do following task.
+1) Insert minimum 5 records in both table (take roll no 1 to 5)
+2) Delete any one record from STUDENT table whose reference is taken in RESULT table (using
+ON DELETE CASCADE)
+3) Change roll no of any one student in STUDENT table whose reference is taken in RESULT table (using ON UPDATE CASCADE)
+
+create table s1
+(
+ rno number primary key,
+ name text
+);
+
+create table r1
+(
+ rno number,
+ percentage text,
+ foreign key(rno) references s1(rno)
+ on delete cascade
+ on update cascade
+);
+
+insert into s1 values(1,'jenish');
+insert into s1 values(2,'yash');
+insert into s1 values(3,'dhruv');
+insert into s1 values(4,'deep');
+insert into s1 values(5,'jeel');
+
+insert into r1 values(1,86.00);
+insert into r1 values(2,85.00);
+insert into r1 values(3,85.74);
+insert into r1 values(4,78.00);
+insert into r1 values(5,89.86);
+
+sqlite> select *from r1;
++------------------+
+  rno   percentage  
++-----+------------ 
+  1     86.0        
+  2     85.0        
+  3     85.74       
+  4     78.0        
+  5     89.86       
++------------------+
+sqlite> select *from s1;
++--------------+
+  rno    name   
++-----+-------- 
+  1     jenish  
+  2     yash    
+  3     dhruv   
+  4     deep    
+  5     jeel    
++--------------+
+
+delete from s1 where rno=1;
++-------------+
+  rno   name   
++-----+------- 
+  2     yash   
+  3     dhruv  
+  4     deep   
+  5     jeel   
++-------------+
+update student set rno=8 where rno=2;
+sqlite> select *from student;
++----------------------+
+  rno   year    name    
++-----+------+--------- 
+  8     fy     krina    
+  3     fy     harshil  
+  4     fy     divya    
+  6     ty     ashish   
++----------------------+
+Q-5 Give examples (Write query and output) for following Filtering elements:
+Distinct, where, between, in, like, union, intersect, except, limit, IS NULL, IS NOT NULL,
+Group by, order by, conditional logic (CASE)
+[*Note: Take tables and data as per your requirement]
+
+create table s5
+(
+ rno number,
+ name text,
+ year number,
+ mobile number
+);
+insert into s5 values(1,'leeza',2005,9090876567);
+insert into s5 values(2,'deep',2004,6758698745);
+insert into s5 values(3,'jeel',2012,6758495858);
+insert into s5 values(4,'ashish',2001,9878987656);
+insert into s5 values(5,'saha',2007,6789789870);
+insert into s5 values(6,'jigar',2002,9812567898);
+
+select distinct(rno) from s5;
++-----+
+  rno  
++----- 
+  1    
+  2    
+  3    
+  4    
+  5    
+  6    
++-----+
+select *from s5 where rno=5;
++--------------------------------+
+  rno   name   year     mobile    
++-----+------+------+------------ 
+  5     saha   2007   6789789870  
++--------------------------------+
+select *from s5 where rno between 1 and 3;
++---------------------------------+
+  rno   name    year     mobile    
++-----+-------+------+------------ 
+  1     leeza   2005   9090876567  
+  2     deep    2004   6758698745  
+  3     jeel    2012   6758495858  
++---------------------------------+
+select rno,name,year from s5 where rno in(2,4);
++---------------------+
+  rno    name    year  
++-----+--------+------ 
+  2     deep     2004  
+  4     ashish   2001  
++---------------------+
+
+select rno,name,year from s5 where name like '%d%';
++-------------------+
+  rno   name   year  
++-----+------+------ 
+  2     deep   2004  
++-------------------+
+create table s2
+(
+ rno number primary key,
+ name text
+);
+create table r2
+(
+ rno number,
+ percentage text,
+ standard number
+);
+
+insert into s2 values(2,'jenish');
+insert into s2 values(1,'yash');
+insert into s2 values(3,'dhruv');
+insert into s2 values(4,'jeel');
+insert into s2 values(5,'jeel');
+
+insert into r2 values(5,85.71,7);
+insert into r2 values(8,85.00,5);
+insert into r2 values(9,85.00,6);
+insert into r2 values(3,89.25,7);
+insert into r2 values(2,69,8);
+
+select rno from s2 
+union
+select rno from r2;
++-----+
+  rno  
++----- 
+  1    
+  2    
+  3    
+  4    
+  5    
+  8    
+  9    
++-----+
+select rno from s2 
+intersect
+select rno from r2;
++-----+
+  rno  
++----- 
+  2    
+  3    
+  5    
++-----+
+select rno from s2
+except
+select rno from s2;
++-----+
+  rno  
++----- 
+  1    
+  4    
++-----+
+select *from s2 limit 3;
++--------------+
+  rno    name   
++-----+-------- 
+  2     jenish  
+  1     yash    
+  3     dhruv   
++--------------+
+select *from s2 limit 3 offset 2;
++-------------+
+  rno   name   
++-----+------- 
+  3     dhruv  
+  4     jeel   
+  5     jeel   
++-------------+
+select *from s2 group by name;
++--------------+
+  rno    name   
++-----+-------- 
+  3     dhruv   
+  4     jeel    
+  2     jenish  
+  1     yash    
++--------------+
+select rno from s2 order by rno;
++-----+
+  rno  
++----- 
+  1    
+  2    
+  3    
+  4    
+  5    
++-----+
+select rno,name from s2 order by name desc;
++--------------+
+  rno    name   
++-----+-------- 
+  1     yash    
+  2     jenish  
+  4     jeel    
+  5     jeel    
+  3     dhruv   
++--------------+
+create table emp
+(
+ eno number,
+ ename varchar,
+ esalary number
+);
+
+insert into emp values(1,'jenish',10000);
+insert into emp values(2,'yash',50000);
+insert into emp values(3,'dhruv',40000);
+insert into emp values(4,'deep',80000);
+insert into emp values(5,'jeel',12000);
+insert into emp values(6,'fenil',25000);
+
+sqlite> select *from emp;
++------------------------+
+  eno   ename    esalary  
++-----+--------+--------- 
+  1     jenish   10000    
+  2     yash     50000    
+  3     dhruv    40000    
+  4     deep     80000    
+  5     jeel     12000    
+  6     fenil    25000    
++------------------------+
+select esalary,
+case
+when esalary>=40000 then 'high salary'
+when esalary<=40000 then 'average salary'
+else
+'low salary'
+end
+"emp type" from emp;
++--------------------------+
+  esalary      emp type     
++---------+---------------- 
+  10000     average salary  
+  50000     high salary     
+  40000     high salary     
+  80000     high salary     
+  12000     average salary  
+  25000     average salary  
++--------------------------+
+Q-6 Create two tables and insert some data to perform following joins :
+Inner join, Natural join, Left join, Right join, Full outer join, cross join, self join
+
+create table sy
+(
+ rno int primary key,
+ name text
+);
+
+create table ty
+(
+ rno int references sy(rno),
+ name text
+);
+
+insert into sy values(01,'krushika');
+insert into sy values(02,'kriva');
+insert into sy values(03,'krishna');
+insert into sy values(04,'hiya');
+insert into sy values(05,'meera');
+
+insert into ty values(01,'krushika');
+insert into ty values(02,'krishna');
+insert into ty values(03,'mahi');
+insert into ty values(04,'hiya');
+insert into ty values(05,'sneha');
+
+select *from sy inner join ty using(name);
++----------------------+
+  rno     name     rno  
++-----+----------+----- 
+  1     krushika   1    
+  3     krishna    2    
+  4     hiya       4    
++----------------------+
+select *from sy natural join ty;
++----------------+
+  rno     name    
++-----+---------- 
+  1     krushika  
+  4     hiya      
++----------------+
+select sy.*,ty.* from sy left join ty using(name);
++---------------------------------+
+  rno     name     rno     name    
++-----+----------+-----+---------- 
+  1     krushika   1     krushika  
+  2     kriva                      
+  3     krishna    2     krishna   
+  4     hiya       4     hiya      
+  5     meera                      
++---------------------------------+
+select sy.*,ty.* from ty left join sy using(name);
++---------------------------------+
+  rno     name     rno     name    
++-----+----------+-----+---------- 
+  1     krushika   1     krushika  
+  3     krishna    2     krishna   
+                   3     mahi      
+  4     hiya       4     hiya      
+                   5     sneha     
++---------------------------------+
+
+select sy.*,ty.* from ty  left join sy using(name)
+union
+select sy.*,ty.* from ty  left join sy using(name);
++---------------------------------+
+  rno     name     rno     name    
++-----+----------+-----+---------- 
+                   3     mahi      
+                   5     sneha     
+  1     krushika   1     krushika  
+  3     krishna    2     krishna   
+  4     hiya       4     hiya      
++---------------------------------+
+select *from sy,ty;
++---------------------------------+
+  rno     name     rno     name    
++-----+----------+-----+---------- 
+  1     krushika   1     krushika  
+  1     krushika   2     krishna   
+  1     krushika   3     mahi      
+  1     krushika   4     hiya      
+  1     krushika   5     sneha     
+  2     kriva      1     krushika  
+  2     kriva      2     krishna   
+  2     kriva      3     mahi      
+  2     kriva      4     hiya      
+  2     kriva      5     sneha     
+  3     krishna    1     krushika  
+  3     krishna    2     krishna   
+  3     krishna    3     mahi      
+  3     krishna    4     hiya      
+  3     krishna    5     sneha     
+  4     hiya       1     krushika  
+  4     hiya       2     krishna   
+  4     hiya       3     mahi      
+  4     hiya       4     hiya      
+  4     hiya       5     sneha     
+  5     meera      1     krushika  
+  5     meera      2     krishna   
+  5     meera      3     mahi      
+  5     meera      4     hiya      
+  5     meera      5     sneha     
++---------------------------------+

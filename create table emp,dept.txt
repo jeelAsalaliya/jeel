@@ -1,0 +1,109 @@
+create table dept
+(
+ deptno int constraint deptno primary key,
+ deptname text,
+ city text
+);
+
+create table emp
+(
+ empno int,
+ ename text,
+ job text,
+ mgr int,
+ hiredate text,
+ sal real,
+ comm real,
+ deptno int,
+constraint empno primary key(empno),
+constraint mgr foreign key (mgr) references emp(empno),
+constraint dept foreign key(deptno) references dept(deptno));
+
+insert into dept values(10,'accounting','surat');
+insert into dept values(20,'research','mumbai');
+insert into dept values(30,'sales','baroda');
+insert into dept values(40,'operations','pune');
+
+insert into emp values(7839,'king','president',null,'17-nov-1988',5000,null,10);
+insert into emp values(7698,'jones','manager',7839,'07-may-1983',3000,300,30);
+insert into emp values(7654,'alien','salesman',7839,'01-sep-1980',1000,500,30);
+insert into emp values(7369,'smit','clerk',7698,'17-jun-1982',3000,null,20);
+insert into emp values(7934,'milen','clerk',7788,'12-jun-1989',1500,null,10);
+insert into emp values(7788,'scott','analyst',7698,'07-nov-1988',5000,null,10);
+insert into emp values(1001,'jeel','president',7839,'23-nov-2004',12000,300,40);
+insert into emp values(1002,'ansh','manager',7654,'12-jun-1998',1400,300,30);
+insert into emp values(1003,'meet','clerk',1001,'21-apr-2009',5000,null,40);
+insert into emp values(1004,'harshil','salesman',1002,'04-may-2004',1500,null,30);
+
+select *from dept where city='surat' or city='pune';
+
+select * from dept
+where city<>'surat' and city<>'pune';
+ 	or
+select *from dept
+where not(city='surat' or city='pune');
+
+select *from emp
+where job='clerk' and(deptno=10 or deptno=30);
+
+select *from emp
+where (job='clerk' or job='analyst' or job='manager');
+	or
+select *from emp
+where job IN('clerk','analyst','manager');
+
+select *from emp
+where ename like '%le%';
+
+select *from emp
+where comm IS NULL;
+
+select *from emp
+where comm is not null;
+
+select *from emp
+where sal>=1500 and sal<=4000;
+	or
+select *from emp
+where sal between 1500 and 4000;
+
+select empno,ename,job,sal+coalesce(comm,0) from emp;
+	or
+select empno,ename,job,sal+ifnull(comm,0)from emp;
+
+select *from emp
+where ename like '%%';
+
+select DISTINCT job from emp;
+
+select *from emp
+order by deptno asc,sal desc;
+
+select *from emp
+where comm is null;
+
+select count(DISTINCT job) from emp;
+
+select count(*) from emp
+where job='clerk';
+
+select sum(sal),max(sal),min(sal),avg(sal)from emp
+where job='clerk';
+
+select deptno,sum(sal) from emp
+group by deptno;
+
+select deptno,count(DISTINCT job)from emp
+group by deptno;
+
+select deptno,count(*) from emp
+where job='clerk'
+group by deptno;
+
+select deptno,count(*) from emp
+group by deptno
+having count(*)>3;
+
+select deptno,sum(sal) from emp
+group by deptno,
+order by sum(sal) desc;
