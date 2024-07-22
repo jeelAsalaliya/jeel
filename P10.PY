@@ -1,0 +1,2 @@
+A='WELCOME TO PYTHON'
+print(A)
