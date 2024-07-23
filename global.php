@@ -1,19 +1,18 @@
 <html>
  <head>
-  <title>Global Variable</title>
+  <title>Global Scope</title>
  </head>
  
  <body>
   <?php
-  $name = "sanaya sharma";
-  function global_var()
-  {
-	  global $name;
-	  echo "Variable inside the function: ". $name;
-	  echo "<br>";
+  $x = 5;
+  
+  function Mytest(){
+  echo "<p>Variable x inside function is: $x </p>";
   }
-  global_var();
-  echo "Variable outside the function: ".$name;
+  Mytest();
+  echo "<p>Variable x outside function is: $x </p>";
   ?>
-   </body>
-   </html>
+  
+ </body>
+ </html>

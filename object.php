@@ -1,19 +1,23 @@
+
 <html>
- <head>
-  <title>Object Datatype</title>
- </head>
- 
- <body>
- <?php
- class bike
- {
-	  function model()
-	  {
-		   $model_name = "Royal Enfield";
-		   echo "bike model: " .$model_name;
-	  }
- }
- $obj = new bike();
- $obj -> model();
+<body>
+
+<?php
+class Car {
+  public $color;
+  public $model;
+  public function __construct($color, $model) {
+    $this->color = $color;
+    $this->model = $model;
+  }
+  public function message() {
+    return "My car is a " . $this->color . " " . $this->model . "!";
+  }
+}
+
+$myCar = new Car("red", "Volvo");
+var_dump($myCar);
 ?>
-</body></html>
+
+</body>
+</html>

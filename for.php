@@ -1,16 +1,14 @@
 <html>
  <head>
-  <title>Continue Statement</title>
+  <title>for loop </title>
  </head>
  
  <body>
   <?php
   for($x=0;$x<=10;$x++){
-  if($x==3) continue;
-  
-  echo "The Number is: $x <br>";
+  echo "The Number is: $x<br>";
   }
-  
   ?>
+  
   </body>
   </html>

@@ -1,16 +1,12 @@
 <html>
  <head>
-  <title>string</title>
+  <title>slicing strings</title>
  </head>
  
  <body>
   <?php
   $x = "Hello World!";
-  $y = 'Hello';
-  
-  var_dump($x);
-  echo "<br>";
-  var_dump($y);
+  echo substr($x,6,5);
   ?>
   
   </body>
