@@ -14,7 +14,7 @@
   {
    n1=n1+n2;
    n2=n1-n2;
-   //n1=n1-n2;
+   n1=n1-n2;
  }
   printf("prime number between %d and %d are:%d\n",n1,n2);
   for(i=n1+1;i<n2;i++)

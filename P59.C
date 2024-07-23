@@ -19,6 +19,7 @@
    int a[10],i,n;
 
 
+
    printf("\n enter number of elements of array;");
    scanf("%d",&n);
 
