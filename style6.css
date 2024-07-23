@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aliceblue;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+}
+
+h1 {
+    background: #f90;
+    line-height: 12px;
+    justify-content: center;
+    font-size: 30px;
+    padding: 20px;
+    margin: 30px;
+}
+
+input {
+    color: burlywood;
+}

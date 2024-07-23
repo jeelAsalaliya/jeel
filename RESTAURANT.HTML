@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Website</title>
+    <link rel="stylesheet" href="RESTAURANT.CSS" />
+    <script
+        src="data:image/png;base64,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"
+        crossorigin="anonymous"></script>
+    <script src="./jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".tag").mouseup(function () {
+                alert("Menu listed");
+            });
+        });
+
+        $(document).ready(function () {
+            $("button").mouseenter(function () {
+                alert("your order confirm!");
+            });
+        });
+
+        $(document).ready(function () {
+            $("input").focus(function () {
+                $(this).css("background-color", "#cccccc");
+            });
+        });
+
+        $(document).ready(function () {
+            $("input").blur(function () {
+                $(this).css("background-color", "yellow");
+            });
+        });
+
+        $(document).ready(function () {
+            $("h3").on("click", function () {
+                $(this).hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <nav>
+        <div class="navigation container">
+            <div class="logo_container">
+                <img src="./detailed-chef-logo-template_23-2148987940.avif" alt="logo" height="100vh" />
+            </div>
+            <div class="bar_icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero_image">
+                <img src="./istockphoto-1478742888-2048x2048.jpg" alt="hero image" height="300" width="500" />
+            </div>
+            <div class="hero_content">
+                <div class="tag">50% Off on All Products</div>
+                <h1>Enjoy Your Delicious Food</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Voluptates, iste corporis tempore necessitatibus inventore ex?
+                </p>
+                <button class="explore_btn">Explore Now</button>
+            </div>
+        </div>
+        <section class="features">
+            <div class="feature">
+                <img src="./beautiful-food-menu-design-template_23-2149061881.avif" alt="" />
+                <div class="feature_content">
+                    <h3>Discount Voucher</h3>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                </div>
+            </div>
+            <div class="feature">
+                <img src="./appointment-restaurant_1098-15080.avif" alt="" />
+                <div class="feature_content">
+                    <h3>Fresh Healthy Food</h3>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                </div>
+            </div>
+            <div class="feature">
+                <img src="./download (1).png" alt="" />
+                <div class="feature_content">
+                    <h3>Fast Home Delivery</h3>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                </div>
+            </div>
+        </section>
+        <div class="divider"></div>
+        <div class="menu">
+            <div class="tag">Our Menu</div>
+            <h2>Explore Our Menu</h2>
+
+            <div class="grid">
+                <div class="item1">
+                    <img class="grid-image" src="./pizza-pizza-filled-with-tomatoes-salami-olives_140725-1200.avif"
+                        alt="image 1" height="100vh" width="100%" />
+                </div>
+                <div class="item2">
+                    <img class="grid-image" src="./download.jpeg" alt="image 2" />
+                </div>
+                <div class="item3">
+                    <img class="grid-image" src="./360_F_435071969_sCwvSRnSi9r9XonzvFnEwXy8PvFShFeP.jpg"
+                        alt="image 3" />
+                </div>
+                <div class="item4">
+                    <img class="grid-image" src="./download (1).jpeg" alt="image 4" />
+                </div>
+                <div class="item5">
+                    <img class="grid-image" src="./download (2).jpeg" alt="image 5" />
+                </div>
+                <div class="item6">
+                    <img class="grid-image" src="./download (3).jpeg" alt="image 6" />
+                </div>
+                <div class="item7">
+                    <img class="grid-image" src="./download (4).jpeg" height="30px" width="50px" alt="image 7" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer_container container">
+            <div class="footer_logo">
+                <img src="D:\Documents - Copy\HARSHIL-ME.jpg" alt="logo" height="100vh" />
+            </div>
+            <div class="link_lists">
+                <h3>Main Links</h3>
+                <ul>
+                    <li>Order Tracking</li>
+                    <li>New Order</li>
+                    <li>Contact Us</li>
+                    <li>News & Blogs</li>
+                </ul>
+            </div>
+            <div class="link_lists">
+                <h3>Support</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Privacy Policy</li>
+                    <li>Terms & Conditons</li>
+                </ul>
+            </div>
+            <div class="news_letter">
+                <h3>Support</h3>
+                <input type="email" placeholder="Enter your Email..." /><br>
+                <button>
+                    <marquee>click here</marquee>
+                </button>
+                <h3>Follow Us</h3>
+                <div class="icon_container">
+                    <div class="icon">
+                        <i class="fa fa-facebook"></i>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-youtube" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
