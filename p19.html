@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("#div1").fadeToggle();
+                $("#div2").fadeToggle("slow");
+                $("#div3").fadeToggle(30000);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <button>click fadeOut</button>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique voluptatum tenetur labore doloremque nobis
+        molestias, ea animi ex ab omnis consectetur quas accusantium iusto laborum illum reiciendis dolores eligendi?
+        Doloremque.</p>
+
+    <div id="div1" style="width:80px;height:80px;background-color:red;"></div>
+    <div id="div2" style="width:80px;height:80px;background-color:green;"></div>
+    <div id="div3" style="width:80px;height:80px;background-color:blue;"></div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./jquery-3.7.1.min.js">
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("p").on({
+                mouseenter: function () {
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function () {
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function () {
+                    $(this).css("background-color", "yellow");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, quidem! Tempore voluptates rerum unde iusto,
+        deserunt saepe, nobis sint impedit quo a nemo ea? Officia impedit minima numquam id accusamus, dolores culpa
+        doloremque vitae repellat aliquam at illum beatae enim dolorum error ut! Rem quasi, delectus, ab totam error
+        praesentium nihil iste, esse at magni deserunt quos asperiores minus. Nemo tempora dolor possimus aperiam
+        commodi tenetur eligendi, blanditiis error dignissimos earum totam sunt cum? Ipsa distinctio excepturi eligendi
+        perferendis, unde suscipit atque. Nesciunt tempora repellendus ab, dignissimos id enim, dicta ullam asperiores
+        hic quia ipsa quam, cupiditate veniam incidunt doloremque sint magni laboriosam in ipsum quaerat. Facere,
+        nesciunt! Veniam, deserunt id nulla placeat molestias magnam laudantium consequuntur nemo tenetur totam ab,
+        blanditiis natus!</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor placeat, corrupti odio voluptates consequuntur
+        qui velit praesentium laboriosam eum nulla quas et aperiam mollitia soluta. Laborum nostrum vitae odit sapiente
+        iure quisquam non ducimus, aspernatur dolor laudantium molestiae, ad vel repellendus eius dolorem! Fugit,
+        labore!</p>
+</body>
+
+</html>

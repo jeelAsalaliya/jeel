@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                var div = $("div");
+                div.animate({
+                    left: '100px'
+                },
+                    "slow");
+                div.animate({
+                    fontSize: '3em'
+                },
+                    "slow");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button>animate queues</button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni id sint asperiores fuga magnam! Placeat distinctio
+        excepturi quibusdam officiis tempore iure reprehenderit deleniti ipsa, mollitia facere repellat laudantium sint
+        perferendis!</p>
+    <div style="background:#98bf21;height:100px;width:200px;position:absolute;">jeel asalaliya</div>
+</body>
+
+</html>

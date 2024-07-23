@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("div").animate(
+                    {
+                        left: '250px'
+                    });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button>start animation</button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente cum tenetur optio eaque. Sint totam quos ipsum
+        debitis inventore blanditiis expedita eius. Molestias, distinctio. Ad officia autem sint id sapiente.</p>
+    <div style="background: #98bf21;height: 100px;width: 100px;position: absolute;"></div>
+</body>
+
+</html>

@@ -1,60 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM ACTION</title>
+    <script src="./jquery-3.7.1.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("div").animate({
+                    height: 'toggle'
+                });
+            });
+        });
+    </script>
 </head>
+
 <body>
-    <form action="./P27.HTML">
-        <div>
-            name:<input type="text" name="myname" id="name">
-        </div>
-        <br>
-        <div>
-            role:<input type="text" name="myrole">
-        </div>
-        <br>
-        <div>
-            email:<input type="email" name="myemail">
-        </div>
-        <br>
-        <div>
-            date:<input type="date" name="mydate">
-        </div>
-        <br>
-        <div>
-            bonus:<input type="number" name="mynumber">
-        </div>
-        <br>
-        <div>
-            Are you eligible?: <input type="checkbox" name="myEligibility" checked>
-        </div>
-        <br>
-        <div>
-            gender: male<input type="radio" name="mygender">
-            female<input type="radio" name="mygender">
-            others<input type="radio" name="mygender">
-        </div>
-        <br>
-        <div>
-            write about yourself:<br><textarea name="mytext" cols="90" rows="12"></textarea>
-        </div>
-        <br>
-        <div>
-            <label for="car">car</label>
-            <select name="mycar" id="car">
-                <option value="ind">indica</option>
-                <option value="swf" selected>swift</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <input type="submit" id="submit now">
-            <input type="reset" id="reset now">
-        </div>
-        <br>
-    </form>
+    <p>predefined values animate</p>
+    <button>start animation</button>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat enim saepe labore culpa illum, dolores quod
+        molestias, maxime ipsa minima nostrum quaerat pariatur ad sed quae aliquam dignissimos similique natus impedit.
+        Error, commodi nemo? Harum id, dolores minus aut, animi accusamus modi explicabo soluta accusantium porro iure
+        minima quos tempora.</p>
+
+    <div style="background: #98bf21;height: 100px;width:100px;position: absolute;"></div>
 </body>
+
 </html>

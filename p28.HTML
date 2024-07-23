@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                var div = $("div");
+                div.animate({
+                    height: '300px',
+                    opacity: '0.4',
+                },
+                    "slow");
+                div.animate({
+                    width: '300px',
+                    opacity: '0.8'
+                },
+                    "slow");
+                div.animate({
+                    height: '100px',
+                    opacity: '0.4'
+                },
+                    "slow");
+                div.animate({
+                    width: '100px',
+                    opacity: '0.8'
+                },
+                    "slow");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button>start animation</button>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla commodi dignissimos eius vero necessitatibus aut
+        tempora officia, provident laborum ea quas nesciunt nemo incidunt excepturi! Odit eligendi aut asperiores
+        doloribus.</p>
+
+    <div style="background: #98bf21;height: 100px;width: 100px;position: absolute;"></div>
+</body>
+
+</html>
