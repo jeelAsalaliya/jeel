@@ -1,0 +1,67 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+    font-family: "lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.8rem;
+    color: #666;
+}
+
+.pimg1 {
+    background-image: url("./medium-shot-man-working-laptop_23-2150287643.jpg");
+    min-height: 100%;
+}
+
+.pimg2 {
+    background-image: url("./programming-background-collage_23-2149901772.avif");
+    min-height: 400px;
+}
+
+.pimg3 {
+    background-image: url("./html-css-collage-concept-with-person_23-2150062008.avif");
+    min-height: 400px;
+}
+
+.pimg1,
+.pimg2,
+.pimg3 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.ptext {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: black;
+}
+
+.textBg {
+    background: #313534;
+    color: #fff;
+    padding: 20px;
+}
+
+.section {
+    padding: 50px 80px;
+    text-align: center;
+}
+
+.section-light {
+    background-color: #f4f4f4;
+    color: #666;
+}
+
+.section-dark {
+    background-color: #282e34;
+    color: #ddd;
+}

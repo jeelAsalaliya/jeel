@@ -1,0 +1,97 @@
+body {
+    height: 97vh;
+    background: linear-gradient(45deg, #f0ff0f, #00700f);
+    display: grid;
+    place-items: center;
+    font-family: poppins;
+    font-weight: 300;
+}
+
+nav {
+    position: relative;
+    background: #fff;
+    padding: 20px 15px;
+    border-radius: 50px;
+    box-shadow: 0 1px 10px #000;
+}
+
+nav a {
+    position: relative;
+    padding: 100px 20px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid transparent;
+    z-index: 1;
+    transition: -3s;
+}
+
+nav span {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    height: 40px;
+    width: 90px;
+    background: linear-gradient(to left, #61045f, #23ff35);
+    border-radius: 25px;
+    transition: -3s;
+}
+
+nav a:nth-child(1) {
+    color: #00e1ff;
+}
+
+nav a:nth-child(1) :hover {
+    color: #fff;
+}
+
+nav a:nth-child(2) {
+    color: #900aff;
+}
+
+nav a:nth-child(2) :hover {
+    color: #f9f9f9;
+}
+
+nav a:nth-child(2) :hover {
+    left: 112px;
+    width: 110px;
+}
+
+nav a:nth-child(3) {
+    color: #abcdef;
+}
+
+nav a:nth-child(3) :hover {
+    color: #fff;
+}
+
+nav a:nth-child(3) :hover {
+    left: 228px;
+    width: 110px;
+}
+
+nav a:nth-child(4) {
+    color: #c7c7c7;
+}
+
+nav a:nth-child(4) :hover {
+    color: #fff;
+}
+
+nav a:nth-child(4) :hover {
+    left: 340px;
+    width: 106px;
+}
+
+nav a:nth-child(5) {
+    color: #bbf67f;
+}
+
+nav a:nth-child(5) :hover {
+    color: #fff;
+}
+
+nav a:nth-child(5) :hover {
+    left: 455px;
+    width: 100px;
+}
