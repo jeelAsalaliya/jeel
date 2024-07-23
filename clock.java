@@ -1,10 +1,11 @@
 import java.awt.*;
 import java.applet.*;
 
+/*<applet code=clock.class width=400 height=200></applet> */
 public class clock extends Applet implements Runnable {
     String msg;
     Thread t = null;
-    boolean stopflag;
+    boolean StopFlag;
     int i, m, s;
 
     public void init() {
@@ -17,7 +18,7 @@ public class clock extends Applet implements Runnable {
 
     public void start() {
         t = new Thread(this);
-        stopflag = false;
+        StopFlag = false;
         t.start();
     }
 
@@ -31,7 +32,6 @@ public class clock extends Applet implements Runnable {
                     } catch (Exception e) {
                     }
                     msg = "h:m:s" + i + ":" + m + ":" + s;
-
                     if (s > 60)
                         s = 0;
                 }
@@ -43,8 +43,8 @@ public class clock extends Applet implements Runnable {
         }
     }
 
-    public void stop() {
-        stopflag = true;
+    public void Stop() {
+        StopFlag = true;
         t = null;
     }
 

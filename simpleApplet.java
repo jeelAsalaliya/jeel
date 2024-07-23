@@ -1,8 +1,9 @@
 import java.awt.*;
 import java.applet.*;
 
-public class simpleApplet extends Applet{
-    public void paint(Graphics g){
-        g.drawString("a simple applet", 20,20);
+/*<applet code="simpleApplet" width=200 height=600></applet>*/
+public class simpleApplet extends Applet {
+    public void paint(Graphics g) {
+        g.drawString("A simple applet", 20, 20);
     }
 }
