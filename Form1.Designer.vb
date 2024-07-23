@@ -22,45 +22,96 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnobj = New System.Windows.Forms.Button()
-        Me.btncollection = New System.Windows.Forms.Button()
+        Me.lblEMPNO = New System.Windows.Forms.Label()
+        Me.lblEMPNAME = New System.Windows.Forms.Label()
+        Me.lblSALARY = New System.Windows.Forms.Label()
+        Me.txtEMPNO = New System.Windows.Forms.TextBox()
+        Me.txtEMPNAME = New System.Windows.Forms.TextBox()
+        Me.txtSALARY = New System.Windows.Forms.TextBox()
+        Me.btnDISPLAY = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'btnobj
+        'lblEMPNO
         '
-        Me.btnobj.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.btnobj.ForeColor = System.Drawing.Color.Cornsilk
-        Me.btnobj.Location = New System.Drawing.Point(34, 46)
-        Me.btnobj.Name = "btnobj"
-        Me.btnobj.Size = New System.Drawing.Size(179, 23)
-        Me.btnobj.TabIndex = 0
-        Me.btnobj.Text = "objectArray"
-        Me.btnobj.UseVisualStyleBackColor = False
+        Me.lblEMPNO.AutoSize = True
+        Me.lblEMPNO.Location = New System.Drawing.Point(37, 43)
+        Me.lblEMPNO.Name = "lblEMPNO"
+        Me.lblEMPNO.Size = New System.Drawing.Size(52, 13)
+        Me.lblEMPNO.TabIndex = 0
+        Me.lblEMPNO.Text = "EMPNO :"
         '
-        'btncollection
+        'lblEMPNAME
         '
-        Me.btncollection.BackColor = System.Drawing.SystemColors.ButtonShadow
-        Me.btncollection.ForeColor = System.Drawing.Color.DarkBlue
-        Me.btncollection.Location = New System.Drawing.Point(34, 85)
-        Me.btncollection.Name = "btncollection"
-        Me.btncollection.Size = New System.Drawing.Size(179, 23)
-        Me.btncollection.TabIndex = 1
-        Me.btncollection.Text = "collectionexample"
-        Me.btncollection.UseVisualStyleBackColor = False
+        Me.lblEMPNAME.AutoSize = True
+        Me.lblEMPNAME.Location = New System.Drawing.Point(37, 71)
+        Me.lblEMPNAME.Name = "lblEMPNAME"
+        Me.lblEMPNAME.Size = New System.Drawing.Size(67, 13)
+        Me.lblEMPNAME.TabIndex = 1
+        Me.lblEMPNAME.Text = "EMPNAME :"
+        '
+        'lblSALARY
+        '
+        Me.lblSALARY.AutoSize = True
+        Me.lblSALARY.Location = New System.Drawing.Point(37, 103)
+        Me.lblSALARY.Name = "lblSALARY"
+        Me.lblSALARY.Size = New System.Drawing.Size(55, 13)
+        Me.lblSALARY.TabIndex = 2
+        Me.lblSALARY.Text = "SALARY :"
+        '
+        'txtEMPNO
+        '
+        Me.txtEMPNO.Location = New System.Drawing.Point(117, 43)
+        Me.txtEMPNO.Name = "txtEMPNO"
+        Me.txtEMPNO.Size = New System.Drawing.Size(100, 20)
+        Me.txtEMPNO.TabIndex = 3
+        '
+        'txtEMPNAME
+        '
+        Me.txtEMPNAME.Location = New System.Drawing.Point(117, 71)
+        Me.txtEMPNAME.Name = "txtEMPNAME"
+        Me.txtEMPNAME.Size = New System.Drawing.Size(100, 20)
+        Me.txtEMPNAME.TabIndex = 4
+        '
+        'txtSALARY
+        '
+        Me.txtSALARY.Location = New System.Drawing.Point(117, 103)
+        Me.txtSALARY.Name = "txtSALARY"
+        Me.txtSALARY.Size = New System.Drawing.Size(100, 20)
+        Me.txtSALARY.TabIndex = 5
+        '
+        'btnDISPLAY
+        '
+        Me.btnDISPLAY.Location = New System.Drawing.Point(78, 12)
+        Me.btnDISPLAY.Name = "btnDISPLAY"
+        Me.btnDISPLAY.Size = New System.Drawing.Size(75, 23)
+        Me.btnDISPLAY.TabIndex = 6
+        Me.btnDISPLAY.Text = "display"
+        Me.btnDISPLAY.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 261)
-        Me.Controls.Add(Me.btncollection)
-        Me.Controls.Add(Me.btnobj)
+        Me.Controls.Add(Me.btnDISPLAY)
+        Me.Controls.Add(Me.txtSALARY)
+        Me.Controls.Add(Me.txtEMPNAME)
+        Me.Controls.Add(Me.txtEMPNO)
+        Me.Controls.Add(Me.lblSALARY)
+        Me.Controls.Add(Me.lblEMPNAME)
+        Me.Controls.Add(Me.lblEMPNO)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents btnobj As System.Windows.Forms.Button
-    Friend WithEvents btncollection As System.Windows.Forms.Button
+    Friend WithEvents lblEMPNO As System.Windows.Forms.Label
+    Friend WithEvents lblEMPNAME As System.Windows.Forms.Label
+    Friend WithEvents lblSALARY As System.Windows.Forms.Label
+    Friend WithEvents txtEMPNO As System.Windows.Forms.TextBox
+    Friend WithEvents txtEMPNAME As System.Windows.Forms.TextBox
+    Friend WithEvents txtSALARY As System.Windows.Forms.TextBox
+    Friend WithEvents btnDISPLAY As System.Windows.Forms.Button
 
 End Class

@@ -1,31 +1,35 @@
-﻿Module conversion
-    Function ReverseString(ByVal str As String) As String
-        Dim strrev As String = " "
-        For i As Integer = 0 To str.Length - 1
-            strrev = strrev & str.Substring(str.Length - 1 - i, 1)
-        Next
-        Return strrev
-    End Function
+﻿Public Class Form1
+    Structure EMPLOYEE
+        Dim empno As Integer
+        Dim ename As String
+        Dim salary As Double
 
-    Function palindrome(ByVal str As String) As String
-        Dim strrev As String = ReverseString(str)
+        Sub New(ByVal empno As Integer, ByVal ename As String, ByVal salary As Double)
+            Me.empno = empno
+            Me.ename = ename
+            Me.salary = salary
 
-        If str.Equals(strrev) Then
-            Return "it is a palindrom string:"
-        Else
-            Return "it is not a palindrom string:"
-        End If
-    End Function
+        End Sub
 
-    Function DECTOBIN(ByVal dec As Integer) As String
-        Dim bin As String = "  "
-        Dim remainder As Integer = 0
+        Function getempno() As Integer
+            Return empno
+        End Function
 
-        Do
-            remainder = dec Mod 2
-            bin = bin & remainder.ToString
-            dec = CInt(Math.Floor(dec / 2))
-        Loop While dec > 0
-        Return ReverseString(bin)
-    End Function
-End Module
+        Function getenm() As String
+            Return ename
+        End Function
+
+        Function getsal() As Double
+            Return salary
+        End Function
+    End Structure
+
+
+    Private Sub btnDISPLAY_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDISPLAY.Click
+        Dim e1 As New EMPLOYEE(101, "AAA", 30000)
+
+        txtEMPNO.Text = CStr(e1.getempno)
+        txtEMPNAME.Text = e1.getenm
+        txtSALARY.Text = CStr(e1.getsal)
+    End Sub
+End Class
