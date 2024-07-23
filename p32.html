@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="./jquery-3.7.1.min.js"></script>
+    <script src="./jquery-1.11.3.js"></script>
     <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                $("#p1").css("color", "red").slideUp(2000).slideDown(2000);
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("p").hide("slow",function(){
+                    alert("the paragraph is now hidden");
+                });
             });
         });
     </script>
 </head>
-
 <body>
-    <p id="p1">jquery! is most easily language</p>
-    <button>click hide</button>
+    <button>hide</button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quidem at accusantium, ex rem odio nulla sed, rerum molestiae consequuntur quo tenetur omnis aliquid reprehenderit facilis unde quia, architecto cumque?</p>
 </body>
-
 </html>

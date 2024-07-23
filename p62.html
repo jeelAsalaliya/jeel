@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="demo"></p>
+    <script>
+        const txt = '{
+            "employees:" 
+            ['+
+        '{"firstname":"john","lastname":"doe"}' +
+        '{"firstname":"divya","lastname":"padhiyar"}' +
+        '{"firstname":"peter","lastname":"jones"}'
+   ']}'
+
+       const obj
+       = JSON.parse(txt);
+        document.getElementById("demo").innerHTML = obj.employees[1].firstname + ", "+ obj.employees[1].lastname;
+    </script>
+    
+</body>
+</html>

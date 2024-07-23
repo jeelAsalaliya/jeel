@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./jquery-1.11.3.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("#div1").remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="div1" style="height: 100px;width:300px;border:1px solid black;background-color:antiquewhite;">
+
+    this a some text in a div.
+    <p>this is a paragraph in the div.</p>
+    <p>this is another paragraph in the div.</p></div>
+
+    <button>remove div element</button>
+</body>
+</html>

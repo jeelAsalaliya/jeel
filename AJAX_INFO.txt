@@ -1,0 +1,7 @@
+
+
+   <h1>this is a html file</h1>
+   <p> this is a xml language</p>
+   <p>this is a HttpRequest send AJAX language</p>
+   <p>this is a ajax languages...</p>
+

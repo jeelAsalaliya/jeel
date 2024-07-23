@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./jquery-1.11.3.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".box").animate({
+                left: '250px',
+                opacity: '0.5',
+                height: '150px',
+                width: '150px'
+            }, "slow")
+                .animate({
+                    top: '150px',
+                    opacity: '1',
+                    height: '100px',
+                    width: '100px'
+                }, "slow")
+                .animate({
+                    left: '0px'
+            opacity: '0.5',
+                    height: '150px',
+                    width: '150px'
+                }, "slow")
+                .animate({
+                    top: '0px',
+                    opacity: '1',
+                    height: '100px',
+                    width: '100px'
+                }, "slow");
+        });
+    </script>
+</body>
+
+</html>

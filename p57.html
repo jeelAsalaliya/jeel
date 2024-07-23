@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="./jquery-1.11.3.js"></script>
+   <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            var txt = "";
+            txt +="outer width:"+$("#div1").outerWidth()+"<br>";
+            txt +="outer height:"+$("#div1").outerHeight();
+            $("#div1").html(txt);
+        });
+    });
+       </script>
+       <style>
+        #div1
+        {
+            height: 100px;
+            width: 300px;
+            padding: 10px;
+            margin: 3px;
+            border: 1px solid red;
+            background-color: lemonchiffon;
+        }
+       </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <button>display dimensions of div</button>
+
+    <p>outerWidth() - returns the outerWidth of element.</p>
+    <p>outerHeight() - returns the outerHeight of element.</p>
+</body>
+</html>

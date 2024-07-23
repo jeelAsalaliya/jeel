@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="./jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                $("p").hide("slow", function () {
-                    alert("the paragraph is niow hidden");
-                });
-            });
-        });
-    </script>
+   <script src="./jquery-1.11.3.js"></script>
+   <script>
+    $(document).ready(function(){
+        $("#flip").click(function(){
+    $("#panel").slideDown(5000);
+  });
+  $("#stop").click(function(){
+    $("#panel").stop();
+  });
+});
+   </script>
+   <style>
+    #panel,#flip
+    {
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+        background-color: #555;
+        color: white;
+        border: solid 1px #767;
+        border-radius: 3px;
+    }
+
+    #panel
+    {
+        padding: 50px;
+        display: none;
+    }
+   </style>
 </head>
-
 <body>
+    <button id="stop">stop sliding</button>
 
-    <button>click hide</button>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis itaque excepturi illo placeat explicabo quos autem
-        cum ab similique mollitia sapiente reiciendis, quae est accusantium officiis. Vitae repellendus enim molestias!
-    </p>
-
+    <div id="flip">click to slide down panel!</div>
+    <div id="panel">hello world!</div>
 </body>
-
 </html>

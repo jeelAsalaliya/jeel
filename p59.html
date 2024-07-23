@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./jquery-1.11.3.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                var txt = "";
+                txt +="document width/height:"+$(document).width();
+                txt +="x"+$(document).height();
+                txt +="window width/height:"+$(window).width();
+                txt +="x"+$(window).height();
+                alert(txt);
+            });
+        });
+    </script>
+<style>
+   #div1 {
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+   margin: 3px;
+   border: 1px solid red;
+    background-color: lemonchiffon;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1">
+    </div>
+
+    <button>dimentions of div1</button>
+    <p>document width(): - returns the document width of element</p>
+    <p>document height(): - returns the document height of element</p>
+    <p>windows width(): - returns the windows width of element</p>
+    <p>windows height(): - returns the windows height of element</p>
+</body>
+</html>

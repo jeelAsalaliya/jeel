@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="./jquery-1.11.3.js"></script>
+
+   <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("h1,h2,p").toggleClass("blue");
+        });
+    });
+   </script>
+
+   <style>
+    .blue
+    {
+        color: red;
+    }
+   </style>
+</head>
+<body>
+  <h1>heading1</h1>
+  <h2>heading2</h2> 
+  
+  <p>this is a paragraph</p>
+  <p>this is a another paragraph</p>
+  <button>toggle classes to elements</button>
+</body>
+</html>

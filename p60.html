@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="./jquery-1.11.3.js"></script>
+   <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#div1").width(500).height(500);
+        });
+    });
+   </script>
+
+<style>
+    #div1 {
+     background-color:  lightblue;
+     }
+     </style>
+</head>
+<body>
+    <div id="div1"></div><br>
+    <button>width and height dimensions</button>
+</body>
+</html>
