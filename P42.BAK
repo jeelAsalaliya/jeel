@@ -1,77 +1,26 @@
-#include<iostream.h>
+#include<stdio.h>
 #include<conio.h>
-#include<string.h>
 
- class directory
+ void main()
  {
-  char name[20];
-  char mobile[10];
-  char sname[20];
-  char smobile[10];
-  int choose;
-  int compare;
-  public:
+  void mystrcpy(char [],char[]);
+  char str1[12],str2[12];
+  int i,b;
 
-  void getdata()
-  {
-   cout<<"\n enter name:";
-   cin>>name;
-   cout<<"\n enter mobile no:";
-   cin>>mobile;
-  }
-  void search()
-  {
-   cout<<"\n________";
-   cout<<"\n 1.search name";
-   cout<<"\n 2.search number";
-   cout<<"\n_________";
-   cout<<"\n enter your choice";
-   cin>>choose;
+  printf("\n enter any strings:");
+  gets(str1);
 
-   switch(choose)
+  mystrcpy(str2,str1);
+  printf("%s",str2);
+  getch();
+ }
+  void mystrcpy(char str2[], char str1[])
+  {
+   int i;
+
+   for(i=0;str1[i]!='\0';i++)
    {
-    case 1:
-    {
-     cout<<"\n enter name for search:";
-     cin>>sname;
-     compare=strcmp(sname,name);
-     if(compare==0)
-     {
-      cout<<"\n\n your mobile num is:"<<mobile;
-     }
-     else
-      cout<<"\n\n can't find name search";
-    }
-     break;
-
-     case 2:
-     {
-      cout<<"\n enter number for search:";
-      cin>>smobile;
-      compare=strcmp(smobile,mobile);
-      if(compare==0)
-      {
-       cout<<"\n\n your name is:"<<name;
-      }
-      else
-       cout<<"\n\n can't number searched";
-     }
-      break;
-
-      default:
-      {
-       cout<<"out of range:";
-       cout<<"\n press enter for exit:";
-      }
-      break;
-     }
-    }
-   };
-    void main()
-    {
-     directory d;
-     clrscr();
-     d.getdata();
-     d.search();
-     getch();
-}
+    str2[i]=str1[i];
+   }
+   str2[i]='\0';
+  }

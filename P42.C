@@ -1,0 +1,27 @@
+
+#include<stdio.h>
+#include<conio.h>
+
+ void main()
+ {
+  void mystrcpy(char [],char[]);
+  char str1[12],str2[12];
+  int i,b;
+
+  printf("\n enter any strings:");
+  gets(str1);
+
+  mystrcpy(str2,str1);
+  printf("%s",str2);
+  getch();
+ }
+  void mystrcpy(char str2[], char str1[])
+  {
+   int i;
+
+   for(i=0;str1[i]!='\0';i++)
+   {
+    str2[i]=str1[i];
+   }
+   str2[i]='\0';
+  }

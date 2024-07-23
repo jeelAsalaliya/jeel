@@ -1,0 +1,34 @@
+
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+  void display(int [3][3]);
+  int a[3][3],i,j;
+  clrscr();
+
+  for(i=0;i<3;i++)
+  {
+   for(j=0;j<3;j++)
+   {
+    printf(" enter val:");
+    scanf("%d",&a[i][j]);
+   }
+  }
+  display(a);
+  getch();
+}
+
+void display(int a[3][3])
+{
+ int i,j;
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   printf("%d\t",a[i][j]);
+  }
+  printf("\n");
+ }
+}

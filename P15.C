@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+void main()
+{
+ int i;
+ char str1[14],str2[12];
+ clrscr();
+
+ printf("\n enter str");
+ gets(str1
+ );
+
+ for(i=0;str1[i]!='\0';i++)
+ {
+  str2[i]=str1[i];
+ }
+ str2[i]='\0';
+ puts(str2);
+ getch();
+}
