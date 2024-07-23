@@ -1,0 +1,90 @@
+<!doctypt html>
+<html>
+
+ <body>
+	<script type="text/javascript">
+	
+	
+	var a=33;
+	var b=10;
+	var c="test";
+	var linebreak="<br/>"
+	
+	document.write("a+b=");
+	result=a+b
+	document.write(result);
+	document.write(linebreak);
+	
+	document.write("a-b=");
+	result=a-b;
+	document.write(result);
+	document.write(linebreak);
+	
+	document.write("a/b=");
+	result=a/b;
+	document.write(result);
+	document.write(linebreak);
+	
+	document.write("a%b=");
+	result=a%b;
+	document.write(result);
+	document.write(linebreak);
+	
+	document.write("a+b+c=");
+	result=a+b+c
+	document.write(result);
+	document.write(linebreak);
+	
+	
+	document.write("++a=");
+	result=++a;
+	document.write(result);
+	document.write(linebreak);
+	
+	document.write("--b=");
+	result=--b;
+	document.write(result);
+	document.write(linebreak);
+	
+    var x=10;
+	var y=20;
+	var z=(x+y);
+	document.write(z);
+	document.write(linebreak);
+	
+	function abc(){
+	var x=10; 
+	}
+	if(10<13){
+	var y=20; //javascript local variable
+	}
+	
+	var data=200; //global variable
+	function e(){
+	document.writeln(data);
+	document.write(linebreak);
+	}
+	function f(){
+	document.writeln(data);
+	document.write(linebreak);
+	}
+	e();
+	f();
+	
+	window.value=90;
+	function m(){
+		window.value=100;
+	}
+	function n(){
+	 alert(window.value);
+	}
+	
+	var value=50;
+	function h(){
+	 alert(window.value);
+	}
+</script>
+
+set the variables to different values and then try...
+</body>
+</html>

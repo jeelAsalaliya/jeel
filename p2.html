@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+	<link rel="stylesheet" href="file:///C:/.HTML/.BOOTSTRAP/css/bootstrap.css">
+	<title>bootstrap 4 example</title>
+	<style type="text/css" media="all">
+		div {
+			color: #36c;
+			background-color: black;
+		}
+	</style>
+</head>
+
+<body>
+	<script src="file:///C:/.HTML/.BOOTSTRAP/js/bootstrap.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+
+	<div class="container">
+		<h2>basic form</h2>
+		<form>
+			<div class="form-group">
+				<label class="exampleinputemail">email</label>
+				<input type="email" class="form-control" id="exampleinputemail" arial-describedby="emailhelp"
+					placeholder="enter your email">
+			</div>
+			<div class="form-group">
+				<label class="exampleinputpassword1">password</label>
+				<input type="password" class="form-control" id="exampleinputpassword1"
+					placeholder="enter your password">
+			</div>
+			<h4>example input</h4>
+			<div class="form-group">
+				<input type="email" class="form-control" id="exampleformcontrolinput1" placeholder="enter your email">
+			</div>
+			<h4>example select</h4>
+			<div class="form-group">
+				<select class="form-control" id="exampleformcontrolselect1">
+					<option>select option #1</option>
+					<option>select option #2</option>
+					<option>select option #3</option>
+					<option>select option #4</option>
+					<option>select option #5</option>
+				</select>
+			</div>
+
+			<h4>example mutiple select</h4>
+			<div class="form-group">
+				<select mutiple class="form-control" id="exampleformcontrolselect2">
+					<option> multiple select #1</option>
+					<option> multiple select #2</option>
+					<option> multiple select #3</option>
+					<option> multiple select #4</option>
+					<option> multiple select #5</option>
+				</select>
+			</div>
+
+			<h4>example textarea</h4>
+			<div class="form-group">
+				<textarea class="form-control" id="exampleformcontroltextarea1" rows="3"></textarea>
+			</div>
+
+			<h2>sizing</h2>
+			<input class="form-control form-control-lg" type="text" placeholder="large input">
+			<br>
+			<input class="form-control" type="text" placeholder="default input">
+			<br>
+			<input class="form-control form-control-sm" type="text" placeholder="small input">
+			<br><br>
+
+			<h2>readonly</h2>
+			<input type="form-control" type="text" placeholder="this is readonly text" readonly>
+			<br><br>
+
+			<h2>range inputs</h2>
+			<div class="form-control">
+				<input type="range" class="form-control-range" id="formcontrolrange">
+			</div>
+
+			<h2>form row</h2>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputemail4">first name</label>
+					<input type="text" class="form-control" id="inputemail4" placeholder="first name">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputpassword4">last name</label>
+					<input type="text" class="form-control" id="inputpassword4" placeholder="last name">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputaddress">address</label>
+				<input type="text" class="form-control" id="inputaddress" placeholder="address">
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputcity">city</label>
+					<input type="text" class="form-control" placeholder="city" id="inputcity">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputstate">state</label>
+					<select id="inputstate" class="form-control">
+						<option selected disabled>select state</option>
+						<option>state 1</option>
+						<option>state 2</option>
+					</select>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="inputzip">pin code</label>
+					<input type="text" class="form-control" id="inputzip" placeholder="pin code">
+				</div>
+			</div>
+			<div class="form-checked-label" type="checkbox" id="gridcheck">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="gridcheck">
+					<label class="form-check-label" for="gridcheck">
+						i agree to terms and conditions
+					</label>
+				</div>
+			</div>
+			<h2>horizontal forms</h2>
+			<div class="form-group-row">
+				<label for="inputemail3" class="col-sm-2 col-form-label"> first name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputemail3" placeholder="first name">
+				</div>
+			</div>
+
+			<div class="form-group-row">
+				<label for="inputpassword3" class="col-sm-2 col-form-label">last name </label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputpassword3" placeholder="last name">
+				</div>
+			</div>
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-form-label col-sm-2 pt-0">radios</legend>
+					<div class="col-sm-10">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridradios" id="gridradios1"
+								value="option1" checked>
+							<label class="form-check-label" for="gridradios1">option 1</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridradios" id="gridradios2"
+								value="option2">
+							<label class="form-check-label" for="gridradios2">option 2</label>
+						</div>
+						<div class="form-check disabled">
+							<input class="form-check-input" type="radio" name="gridradios" id="gridradios3"
+								value="option3" disabled>
+							<label class="form-check-label" for="gridradios3">option 3(disabled)</label>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group-row">
+				<div class="col-sm-2">checkbox</div>
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridcheck1">
+						<label class="form-check-label" for="gridcheck1">option 1 </label>
+					</div>
+
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridcheck2">
+						<label class="form-check-label" for="gridcheck1">option 2</label>
+					</div>
+				</div>
+			</div>
+
+			<h2>inline forms</h2>
+			<form class="form-inline" action="/action_page.php">
+				<label for="email">email:
+					<input type="email" class="form-control" id="email" placeholder="enter email" name="email"></label>
+				<label for="pwd">password:
+					<input type="password" class="form-control" id="pwd" placeholder="enter password"
+						name="pswd"></label>
+
+				<h2>disabled form</h2>
+				<fieldset disabled>
+					<div class="form-group">
+						<label for="disabledtextinput">name</label>
+						<input type="text" id="disabledtextinput" class="form-control" placeholder="jeel asalaliya">
+					</div>
+					<div class="form-group">
+						<label for="disabledselect"> select your option</label>
+						<select id="disabledselect" class="form-control">
+							<option>select</option>
+						</select>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="disabledfieldsetcheck" disabled>
+						<label class="form-check-label" for="disabledfieldsetcheck">
+							remember me</label>
+					</div>
+
+					<h2> help text</h2>
+					<label for="inputpassword5">password</label>
+					<input type="password" id="inputpassword5" class="form-control"
+						aria-describedby="passwordhelpblock">
+					<small id="passwordhelpblock" class="form-text text-muted">
+						your password must be 6-10 characters long(this is help text).
+					</small>
+				</fieldset>
+				<button type="submit" class="btn btn-secondary">submit</button>
+				<button type="submit" class="btn btn-success">sign in</button>
+			</form>
+	</div>
+</body>
+
+</html>
