@@ -1,30 +1,51 @@
-import Select from "./Select";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
-import Container from "./container/Container";
-import Logo from "./Logo";
-import LogoutBtn from "./Header/LogoutBtn";
-import RTE from "./RTE";
-import Signup from "./Signup";
-import Login from "./Login";
-import Button from "./Button";
-import PostForm from "./post-form/PostForm";
-import PostCard from "./PostCard";
-import AuthLayout from "./AuthLayout";
-import Input from "./Input";
-export {
-    Header,
-    Footer,
-    Container,
-    Logo,
-    LogoutBtn,
-    RTE,
-    Signup,
-    Login,
-    Button,
-    PostForm,
-    PostCard,
-    AuthLayout,
-    Input,
-    Select,
+const express = require("express");
+const jwt = require('jsonwebtoken');
+const app = express();
+const secretkey = "secretkey";
+
+app.get("/", (req, res) => {
+    res.json({
+        Message: " a sample api"
+    })
+})
+
+app.post("/login", (req, res) => {
+    const user = {
+        id: 1,
+        username: "jeel",
+        email: "abc@123"
+    }
+    jwt.sign({ user }, secretkey, { expiresIn: '300s' }, (err, token) => {
+        res.json({
+            token
+        })
+    })
+})
+
+app.post("/profile", verifyToken, (req, res) => {
+    jwt.verify(req.token, secretkey, (err, authData) => {
+        if (err) {
+            res.send({ result: "invalid token..." });
+        } else {
+            res.json({
+                Message: 'profile accessed',
+                authData
+            })
+        }
+    })
+})
+
+function verifyToken(req, res, next) {
+    const bearerheader = req.bearerheaders[' '];
+    if (typeof bearerheader != 'undefined') {
+        const bearer = bearerheader.split(" ");
+        const token = bearerheader[1];
+        req.token = token;
+        next();
+    } else {
+        res.send({ result: "token is not valid" })
+    }
 }
+app.listen(500, () => {
+    console.log("app is running on 500 port:")
+});
